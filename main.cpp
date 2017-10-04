@@ -4,11 +4,14 @@
 int main()
 {
     txCreateWindow (900, 900);
+
     BUTTON buttons[4];
-    buttons[0] = {"sdfsdf",  10, 225, false, {}};
-    buttons[1] = {"uhuhli", 225, 440, false, {}};
-    buttons[2] = {"dtudud", 440, 665, false, {}};
-    buttons[3] = {"aseyer", 665, 900, false, {}};
+    HDC pic = txLoadImage("Houses\\Cottage.bmp") ;
+    buttons[0] = {"sdfsdf",  10, 225, false, {}, pic};
+    buttons[1] = {"uhuhli", 225, 440, false, {}, pic};
+    buttons[2] = {"dtudud", 440, 665, false, {}, pic};
+    buttons[3] = {"aseyer", 665, 900, false, {}, pic};
+
 
     while (!GetAsyncKeyState(VK_ESCAPE))
     {
@@ -20,6 +23,8 @@ int main()
         menu_draw(&buttons[1]);
         menu_draw(&buttons[2]);
         menu_draw(&buttons[3]);
+
+
         menu_focus(&buttons[0]);
         menu_focus(&buttons[1]);
         menu_focus(&buttons[2]);
