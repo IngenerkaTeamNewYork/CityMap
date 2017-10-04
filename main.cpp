@@ -1,6 +1,8 @@
 #include "TXLib.h"
 #include "lib\\menu.cpp"
 
+void menu_focus1(BUTTON* button);
+
 int main()
 {
     txCreateWindow (900, 900);
@@ -29,11 +31,39 @@ int main()
         menu_focus(&buttons[1]);
         menu_focus(&buttons[2]);
         menu_focus(&buttons[3]);
+     }
+
+
+        //x > 100 x < 300
+        //y > 200 y < 500
+
+        //x > 300 x < 500
+        //y > 200 y < 500
 
         txSleep(5);
-    }
+
     return 0;
+}
+
+void menu_focus1(BUTTON* button)
+{
+    if ((txMouseY() > 200  && txMouseY() < 500)
+     && (txMouseX () > button->minX && txMouseX () < button->maxX))
+    {
+        button->isPushed = true;
     }
+    else if ((txMouseX () < button->minX || txMouseX () > button->maxX))
+    {
+        button->isPushed = false;
+    }
+
+    if (button->isPushed)
+    {
+       HDC Cottage;
+    Cottage = txLoadImage ("C:\\Users\\Student\\Desktop\\CityMap-master\\Pictures\\Houses\\Cottage2.bmp");
+    txBitBlt (txDC(), 0, 0, 200, 500, Cottage, 0, 0);
+    }
+}
 
 
 
