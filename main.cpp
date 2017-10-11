@@ -6,36 +6,45 @@ int main()
     txCreateWindow (900, 900);
 
     BUTTON buttons[4];
-    HDC pic = txLoadImage("Houses\\Cottage.bmp") ;
-    buttons[0] = {"sdfsdf",  10, 225, false, {}, pic};
-    buttons[1] = {"uhuhli", 225, 440, false, {}, pic};
-    buttons[2] = {"dtudud", 440, 665, false, {}, pic};
-    buttons[3] = {"aseyer", 665, 900, false, {}, pic};
 
+    buttons[0] = {"House",  10, 225, false, {}};
+    buttons[1] = {"Public houses", 225, 440, false, {}};
+    buttons[2] = {"Sightseens", 440, 665, false, {}};
+    buttons[3] = {"Landscape", 665, 900, false, {}};
+
+    zapolnenie_mosiva1(&buttons[0]);
+    zapolnenie_mosiva2(&buttons[1]);
+    zapolnenie_mosiva3(&buttons[2]);
+    zapolnenie_mosiva4(&buttons[3]);
 
     while (!GetAsyncKeyState(VK_ESCAPE))
     {
+        txBegin();
         txSetFillColor(TX_BLACK);
         txClear();
         txSetColor (TX_LIGHTBLUE);
 
-        menu_draw(&buttons[0]);
-        menu_draw(&buttons[1]);
-        menu_draw(&buttons[2]);
-        menu_draw(&buttons[3]);
+        for (int nomer_knopki = 0; nomer_knopki < 4; nomer_knopki++)
+        {
+            menu_focus(&buttons[nomer_knopki]);
+            menu_draw(&buttons[nomer_knopki]);
+        }
 
-
-        menu_focus(&buttons[0]);
-        menu_focus(&buttons[1]);
-        menu_focus(&buttons[2]);
-        menu_focus(&buttons[3]);
-
-        txSleep(5);
+        txSleep(10);
+        txEnd();
     }
+
+    for (int nomer_zagolovka = 0;
+        nomer_zagolovka < 4;
+        nomer_zagolovka++)
+    {
+        for (int nomer_knopki = 0;
+            nomer_knopki < buttons[nomer_zagolovka].kolvo_knopok;
+            nomer_knopki++)
+        {
+           txDeleteDC (buttons[nomer_zagolovka].knopki[nomer_knopki].pic);
+        }
+    }
+
     return 0;
-    }
-
-
-
-
-
+}

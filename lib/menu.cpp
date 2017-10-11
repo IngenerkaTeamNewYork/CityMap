@@ -7,6 +7,7 @@ struct BUTTON2
     int minX;
     int minY;
     bool isPushed;
+    HDC pic;
 };
 
 struct BUTTON
@@ -16,34 +17,78 @@ struct BUTTON
     int maxX;
     bool isPushed;
     BUTTON2 knopki[15];
+    int kolvo_knopok;
 };
 
 void zapolnenie_mosiva1(BUTTON* button)
 {
-    button->knopki[0] =  {"KrasivyiDom",    button->minX, 100, false};
-    button->knopki[1] =  {"Cottage",        button->minX, 125, false};
-    button->knopki[2] =  {"Domische",       button->minX, 150, false};
-    button->knopki[3] =  {"SkyScraper",     button->minX, 175, false};
-    button->knopki[4] =  {"House",          button->minX, 200, false};
-    button->knopki[5] =  {"Dacha",          button->minX, 225, false};
-    button->knopki[6] =  {"TipichnyiDom",   button->minX, 250, false};
-    button->knopki[7] =  {"Hotel",          button->minX, 275, false};
-    button->knopki[8] =  {"MGU",            button->minX, 300, false};
-    button->knopki[9] =  {"StatuyaSvobody", button->minX, 325, false};
-    button->knopki[10] = {"Eiffel",         button->minX, 350, false};
+    button->knopki[0] =  {"KrasivyiDom",    button->minX, 100, false, txLoadImage("Houses\\KrasivyiDom.bmp")};
+    button->knopki[1] =  {"Cottage",        button->minX, 125, false, txLoadImage("Houses\\Cottage.bmp")};
+    button->knopki[2] =  {"Domische",       button->minX, 150, false, txLoadImage("Houses\\Domische.bmp")};
+    button->knopki[3] =  {"SkyScraper",     button->minX, 175, false, txLoadImage("Houses\\SkyScraper.bmp")};
+    button->knopki[4] =  {"House",          button->minX, 200, false, txLoadImage("Houses\\House.bmp")};
+    button->knopki[5] =  {"Dacha",          button->minX, 225, false, txLoadImage("Houses\\Dacha.bmp")};
+    button->knopki[6] =  {"TipichnyiDom",   button->minX, 250, false, txLoadImage("Houses\\TipichnyiDom.bmp")};
+
+    button->kolvo_knopok = 7;
 
 }
+void zapolnenie_mosiva2(BUTTON* button)
+{
+    button->knopki[0] =  {"Cafe",           button->minX, 100, false, txLoadImage("Houses\\KrasivyiDom.bmp")};
+    button->knopki[1] =  {"Hotel",          button->minX, 125, false, txLoadImage("Houses\\Hotel.bmp")};
+    button->knopki[2] =  {"Magnit ",        button->minX, 150, false, txLoadImage("Houses\\Domische.bmp")};
+    button->knopki[3] =  {"OfficeTelegram", button->minX, 175, false, txLoadImage("Houses\\SkyScraper.bmp")};
+    button->knopki[4] =  {"Pyatyorochka	",  button->minX, 200, false, txLoadImage("Houses\\House.bmp")};
+    button->knopki[5] =  {"carService",     button->minX, 225, false, txLoadImage("Houses\\Dacha.bmp")};
+    button->knopki[6] =  {"	klinika	",      button->minX, 250, false, txLoadImage("Houses\\KrasivyiDom.bmp")};
+    button->knopki[7] =  {"leviyMagazin",   button->minX, 275, false, txLoadImage("Houses\\Cottage.bmp")};
+    button->knopki[8] =  {"museum",         button->minX, 300, false, txLoadImage("Houses\\Domische.bmp")};
+    button->knopki[9] =  {"tyurima",        button->minX, 325, false, txLoadImage("Houses\\SkyScraper.bmp")};
+
+    button->kolvo_knopok = 10;
+
+}
+
+void zapolnenie_mosiva3 (BUTTON* button)
+{
+
+    button->knopki[0] =  {"Hotel",          button->minX, 100, false, txLoadImage("Houses\\Hotel.bmp")};
+    button->knopki[1] =  {"MGU",            button->minX, 125, false, txLoadImage("Houses\\MGU.bmp")};
+    button->knopki[2] =  {"StatuyaSvobody", button->minX, 150, false, txLoadImage("Houses\\StatuyaSvobody.bmp")};
+    button->knopki[3] =  {"Eiffel",         button->minX, 175, false, txLoadImage("Houses\\Eiffel.bmp")};
+
+    button->kolvo_knopok = 4;
+
+}
+
+void zapolnenie_mosiva4 (BUTTON* button)
+{
+
+    button->knopki[0] =  {"Hotel",          button->minX, 100, false, txLoadImage("Houses\\Hotel.bmp")};
+    button->knopki[1] =  {"MGU",            button->minX, 125, false, txLoadImage("Houses\\MGU.bmp")};
+    button->knopki[2] =  {"StatuyaSvobody", button->minX, 150, false, txLoadImage("Houses\\StatuyaSvobody.bmp")};
+    button->knopki[3] =  {"Eiffel",         button->minX, 175, false, txLoadImage("Houses\\Eiffel.bmp")};
+
+    button->kolvo_knopok = 4;
+
+}
+
+
 void menu_draw(BUTTON* button)
 {
     txSetColor (TX_LIGHTBLUE);
     txSetFillColor (RGB(180,250,250));
     txRectangle (button->minX , 50,  button->maxX, 100);
+    txTextOut(button->minX, 50, button->textbutton);
 }
 
 void menu_focus(BUTTON* button)
 {
-    txSetColor (TX_LIGHTBLUE);
+    txSetColor (TX_BLUE);
     txSetFillColor (RGB(180,250,250));
+
+
     //Нажали на кнопку
     if ((txMouseY() > 50  && txMouseY() < 100)
      && (txMouseX () > button->minX && txMouseX () < button->maxX))
@@ -54,20 +99,28 @@ void menu_focus(BUTTON* button)
     else if ((txMouseX () < button->minX || txMouseX () > button->maxX))
     {
         button->isPushed = false;
+
     }
 
     if (button->isPushed)
     {
+
         txRectangle (button->minX, 100, button->maxX, 500);
-        for(int i = 0; i < 11; i++)
+        for (int i = 0; i < button->kolvo_knopok; i++)
         {
-        txTextOut(button->knopki[i].minX, button->knopki[i].minY, button->knopki[i].textbutton);
+            txTextOut(button->knopki[i].minX, button->knopki[i].minY, button->knopki[i].textbutton);
         }
         //Фокус на нужной подкнопке
-        if (txMouseY() > 250  && txMouseY() < 300)
+        for (int i = 0; i < button->kolvo_knopok; i++)
         {
-            txSetFillColor(TX_RED);
-            txRectangle (txMouseX(), txMouseY(), txMouseX() + 100, txMouseY() + 100);
+            if (
+                txMouseY() > button->knopki[i].minY  &&
+                txMouseY() < button->knopki[i].minY + 30 &&
+                txMouseX () < button->maxX &&
+                txMouseX () > button->minX)
+            {
+                txBitBlt (txDC(), txMouseX(), txMouseY(), txMouseX() + 150, txMouseY() + 200, button->knopki[i].pic, 0, 0);
+            }
         }
     }
 }
