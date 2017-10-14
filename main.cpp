@@ -4,6 +4,8 @@
 int main()
 {
     txCreateWindow (900, 900);
+    HDC  fon = txLoadImage ("panorama.bmp");
+
 
     BUTTON buttons[4];
 
@@ -22,6 +24,11 @@ int main()
         txBegin();
         txSetFillColor(TX_BLACK);
         txClear();
+        txBitBlt (txDC(), 0, 0, 900, 900, fon, X_COORD, 0);
+        Arrows ();
+
+        shift ();
+
         txSetColor (TX_LIGHTBLUE);
 
         for (int nomer_knopki = 0; nomer_knopki < 4; nomer_knopki++)
@@ -45,6 +52,7 @@ int main()
            txDeleteDC (buttons[nomer_zagolovka].knopki[nomer_knopki].pic);
         }
     }
+        txDeleteDC (&fon);
 
     return 0;
 }
