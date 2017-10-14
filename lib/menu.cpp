@@ -1,4 +1,5 @@
 #include "TXLib.h"
+#include "configs.cpp"
 
 //Листовой уровень
 struct BUTTON2
@@ -19,6 +20,38 @@ struct BUTTON
     BUTTON2 knopki[15];
     int kolvo_knopok;
 };
+
+void Arrows ()
+{
+    txSetFillColor (RGB (0,255,0));
+
+    txRectangle (750, 400, 825, 450);
+    POINT tre[3] = {{900, 425}, {825, 475}, {825, 375}};
+    txPolygon (tre, 3);
+
+    txSetFillColor (RGB (43,255,43));
+    txRectangle (75, 400, 150, 450);
+    POINT stre[3] = {{0, 425}, {75, 475}, {75, 375}};
+
+    txPolygon (stre, 3);
+}
+
+void shift ()
+{
+    COLORREF color = txGetPixel(txMouseX(), txMouseY());
+
+    if((txMouseButtons() & 1) && (color == RGB(0, 255, 0)) && X_COORD < 3500)
+    {
+        X_COORD += 900;
+        txSleep(1000);
+    }
+
+    if((txMouseButtons() & 1) && (color == RGB(43, 255, 43)) && X_COORD > 0)
+    {
+        X_COORD -= 900;
+        txSleep(1000);
+    }
+}
 
 void zapolnenie_mosiva1(BUTTON* button)
 {
