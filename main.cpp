@@ -4,14 +4,16 @@
 int main()
 {
     txCreateWindow (900, 900);
-    HDC  fon = txLoadImage ("Pictures\\fon.bmp");
+    HDC  fon = txLoadImage ("fon.bmp");
+    HDC  arrows = txLoadImage ("arrows.bmp");
+
 
     BUTTON buttons[4];
 
-    buttons[0] = {"House",  10, 225, false, {}};
-    buttons[1] = {"Public houses", 225, 440, false, {}};
-    buttons[2] = {"Sightseens", 440, 665, false, {}};
-    buttons[3] = {"Landscape", 665, 900, false, {}};
+    buttons[0] = {"House",  50, 250, false, {}};
+    buttons[1] = {"Public houses", 250, 450, false, {}};
+    buttons[2] = {"Sightseens", 450, 650, false, {}};
+    buttons[3] = {"Landscape", 650, 850, false, {}};
 
     zapolnenie_mosiva1(&buttons[0]);
     zapolnenie_mosiva2(&buttons[1]);
@@ -23,10 +25,14 @@ int main()
         txBegin();
         txSetFillColor(TX_BLACK);
         txClear();
+        txBitBlt (txDC(), 0, 50, 900, 900, fon, X_COORD, 0);
+        Arrows (arrows);
 
-        txBitBlt (txDC(), 0, 0, 900, 900, fon, X_COORD, 0);
-        Arrows ();
         shift ();
+        appearance (&buttons[0]);
+        appearance (&buttons[1]);
+        appearance (&buttons[2]);
+        appearance (&buttons[3]);
 
         txSetColor (TX_LIGHTBLUE);
 
@@ -34,6 +40,11 @@ int main()
         {
             menu_focus(&buttons[nomer_knopki]);
             menu_draw(&buttons[nomer_knopki]);
+        }
+
+        if (KARTINKA != nullptr)
+        {
+            txBitBlt (txDC(), 600, 500, 900, 900, KARTINKA, 0, 0);
         }
 
         txSleep(10);
@@ -51,8 +62,8 @@ int main()
            txDeleteDC (buttons[nomer_zagolovka].knopki[nomer_knopki].pic);
         }
     }
-
-    txDeleteDC (&fon);
+        txDeleteDC (&fon);
+        txDeleteDC (&arrows);
 
     return 0;
 }
