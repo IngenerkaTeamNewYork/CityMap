@@ -4,8 +4,8 @@
 int main()
 {
     txCreateWindow (900, 900);
-    HDC  fon = txLoadImage ("fon.bmp");
-    HDC  arrows = txLoadImage ("arrows.bmp");
+    HDC  fon = txLoadImage ("Pictures\\fon.bmp");
+    HDC  arrows = txLoadImage ("Pictures\\arrows.bmp");
 
 
     BUTTON buttons[4];
@@ -60,10 +60,12 @@ int main()
             nomer_knopki++)
         {
            txDeleteDC (buttons[nomer_zagolovka].knopki[nomer_knopki].pic);
+           txDeleteDC (buttons[nomer_zagolovka].knopki[nomer_knopki].ikonka);
         }
     }
-        txDeleteDC (&fon);
-        txDeleteDC (&arrows);
+
+    txDeleteDC (&fon);
+    txDeleteDC (&arrows);
 
     return 0;
 }
