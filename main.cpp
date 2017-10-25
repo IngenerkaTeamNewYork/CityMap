@@ -6,6 +6,8 @@ int main()
     txCreateWindow (900, 900);
     HDC  fon = txLoadImage ("Pictures\\fon.bmp");
     HDC  arrows = txLoadImage ("Pictures\\arrows.bmp");
+    HDC  PrivateHouse = txLoadImage ("Icons\\Houses\\PrivateHouse.bmp");
+    HDC  skyscraper = txLoadImage ("Icons\\Houses\\skyscraper.bmp");
 
 
     BUTTON buttons[4];
@@ -25,6 +27,9 @@ int main()
         txBegin();
         txSetFillColor(TX_BLACK);
         txClear();
+
+        map1 (PrivateHouse, skyscraper);
+
         txBitBlt (txDC(), 0, 50, 900, 900, fon, X_COORD, 0);
         Arrows (arrows);
 
