@@ -175,3 +175,20 @@ void appearance (BUTTON* button)
         }
     }
 }
+
+
+void map1 (HDC PrivateHouse, HDC skyscraper)
+{
+   txBitBlt (txDC(), 200, 200, 30, 30, skyscraper);
+   txBitBlt (txDC(), 200, 400, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 400, 200, 30, 30, skyscraper);
+   txBitBlt (txDC(), 300, 200, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 200, 300, 30, 30, skyscraper);
+   txBitBlt (txDC(), 300, 300, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 600, 200, 30, 30, skyscraper);
+   txBitBlt (txDC(), 700, 300, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 800, 200, 30, 30, skyscraper);
+   txBitBlt (txDC(), 400, 500, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 500, 600, 30, 30, skyscraper);
+   txBitBlt (txDC(), 600, 700, 30, 30, PrivateHouse);
+}
