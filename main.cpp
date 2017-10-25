@@ -42,10 +42,33 @@ int main()
             menu_draw(&buttons[nomer_knopki]);
         }
 
-        if (KARTINKA != nullptr)
+        bool knopka_najata = false;
+        for (int nomer_knopki = 0; nomer_knopki < 4; nomer_knopki++)
         {
-            txBitBlt (txDC(), 600, 500, 900, 900, KARTINKA, 0, 0);
+            if (buttons[nomer_knopki].isPushed)
+            {
+                knopka_najata = true;
+            }
         }
+
+        if (txMouseY() > 100 && !RISOVAT_KARTINKU && !knopka_najata &&
+            txMouseButtons() & 1)
+        {
+            X = txMouseX();
+            Y = txMouseY();
+            RISOVAT_KARTINKU = true;
+        }
+
+        if (KARTINKA != nullptr && RISOVAT_KARTINKU)
+        {
+            txBitBlt (txDC(), X, Y, 900, 900, KARTINKA, 0, 0);
+        }
+
+
+        if (RISOVAT_KARTINKU)
+            txTextOut(450, 500, "RISOVAT");
+        if (KARTINKA != nullptr)
+            txTextOut(450, 600, "KARTINKA");
 
         txSleep(10);
         txEnd();
