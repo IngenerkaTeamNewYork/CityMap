@@ -7,6 +7,10 @@ int main()
     HDC  fon = txLoadImage ("Pictures\\fon.bmp");
     HDC  arrows = txLoadImage ("Pictures\\arrows.bmp");
 
+    for (int i = 0; i < w; i++)
+    {
+        KART[i] = {nullptr, 0, 0, false};
+    }
 
     BUTTON buttons[4];
 
@@ -42,10 +46,33 @@ int main()
             menu_draw(&buttons[nomer_knopki]);
         }
 
-        if (KARTINKA != nullptr)
+        bool knopka_najata = false;
+        for (int nomer_knopki = 0; nomer_knopki < 4; nomer_knopki++)
         {
-            txBitBlt (txDC(), 600, 500, 900, 900, KARTINKA, 0, 0);
+            if (buttons[nomer_knopki].isPushed)
+            {
+                knopka_najata = true;
+            }
         }
+
+        if (txMouseY() > 100 && !KART[0].RISOVAT_KARTINKU && !knopka_najata &&
+            txMouseButtons() & 1)
+        {
+            KART[0].X = txMouseX();
+            KART[0].Y = txMouseY();
+            KART[0].RISOVAT_KARTINKU = true;
+        }
+
+        if (KART[0].KARTINKA != nullptr && KART[0].RISOVAT_KARTINKU)
+        {
+            txBitBlt (txDC(), KART[0].X, KART[0].Y, 900, 900, KART[0].KARTINKA, 0, 0);
+        }
+
+
+        if (KART[0].RISOVAT_KARTINKU)
+            txTextOut(450, 500, "RISOVAT");
+        if (KART[0].KARTINKA != nullptr)
+            txTextOut(450, 600, "KARTINKA");
 
         txSleep(10);
         txEnd();
