@@ -34,7 +34,7 @@ void Arrows (HDC arrows)
     COLORREF color = txGetPixel(txMouseX(), txMouseY());
 
     //Стрелка вправо
-    if((txMouseButtons() & 1) && (color == RGB(0, 0, 0)) && X_COORD < 3500)
+    if((txMouseButtons() & 1) && (color == RGB(0, 0, 1)) && X_COORD < 3500)
     {
         X_COORD += 900;
         txSleep(1000);
@@ -120,10 +120,6 @@ void menu_focus(BUTTON* button)
     txSetColor (TX_BLUE);
     txSetFillColor (RGB(180,250,250));
 
-
-    if (button->isPushed)
-        txTextOut(450, 700, "1");
-
     //Нажали на кнопку
     if ((txMouseY() > 0  && txMouseY() < 50)
      && (txMouseX () > button->minX && txMouseX () < button->maxX ))
@@ -131,7 +127,7 @@ void menu_focus(BUTTON* button)
         button->isPushed = true;
     }
     //Фокус потерян
-    else if ((txMouseX () < button->minX || txMouseX () > button->maxX || txMouseY() < 0  || txMouseY() > 500))
+    else if ((txMouseX () < button->minX || txMouseX () > button->maxX || txMouseY() < 0  || txMouseY() > 400))
     {
         button->isPushed = false;
     }
@@ -171,7 +167,24 @@ void appearance (BUTTON* button)
             txMouseX () > button->minX &&
             txMouseButtons() & 1 && button->isPushed)
         {
-            KARTINKA = button->knopki[i].ikonka;
+            KART[0].KARTINKA = button->knopki[i].ikonka;
+            KART[0].RISOVAT_KARTINKU = false;
         }
     }
+}
+
+void map1 (HDC PrivateHouse, HDC skyscraper)
+{
+   txBitBlt (txDC(), 200, 200, 30, 30, skyscraper);
+   txBitBlt (txDC(), 200, 400, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 400, 200, 30, 30, skyscraper);
+   txBitBlt (txDC(), 300, 200, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 200, 300, 30, 30, skyscraper);
+   txBitBlt (txDC(), 300, 300, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 600, 200, 30, 30, skyscraper);
+   txBitBlt (txDC(), 700, 300, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 800, 200, 30, 30, skyscraper);
+   txBitBlt (txDC(), 400, 500, 30, 30, PrivateHouse);
+   txBitBlt (txDC(), 500, 600, 30, 30, skyscraper);
+   txBitBlt (txDC(), 600, 700, 30, 30, PrivateHouse);
 }
