@@ -121,6 +121,9 @@ void menu_focus(BUTTON* button)
     txSetFillColor (RGB(180,250,250));
 
 
+    if (button->isPushed)
+        txTextOut(450, 700, "1");
+
     //Нажали на кнопку
     if ((txMouseY() > 0  && txMouseY() < 50)
      && (txMouseX () > button->minX && txMouseX () < button->maxX ))
@@ -128,7 +131,7 @@ void menu_focus(BUTTON* button)
         button->isPushed = true;
     }
     //Фокус потерян
-    else if ((txMouseX () < button->minX || txMouseX () > button->maxX))
+    else if ((txMouseX () < button->minX || txMouseX () > button->maxX || txMouseY() < 0  || txMouseY() > 500))
     {
         button->isPushed = false;
     }
@@ -159,35 +162,16 @@ void menu_focus(BUTTON* button)
 
 void appearance (BUTTON* button)
 {
-for (int i = 0; i < button->kolvo_knopok; i++)
-    {
-    if ( (txMouseButtons() & 1) &&
-    (txMouseY() > button->knopki[i].minY  &&
-    txMouseY() < button->knopki[i].minY+30)
-     && (txMouseX () > button->minX &&
-     txMouseX () < button->maxX))
-    {
-        button->isPushed = true;
-    }
-    //Фокус потерян
-    else if ((txMouseX () < button->minX || txMouseX () > button->maxX))
-    {
-        button->isPushed = false;
-
-    }
-     }
-
-
     for (int i = 0; i < button->kolvo_knopok; i++)
     {
 
-      if (txMouseY() > button->knopki[i].minY  &&
-          txMouseY() < button->knopki[i].minY + 30 &&
-          txMouseX () < button->maxX &&
-          txMouseX () > button->minX &&
-          txMouseButtons() & 1 && button->isPushed)
-          {
+        if (txMouseY() > button->knopki[i].minY  &&
+            txMouseY() < button->knopki[i].minY + 30 &&
+            txMouseX () < button->maxX &&
+            txMouseX () > button->minX &&
+            txMouseButtons() & 1 && button->isPushed)
+        {
             KARTINKA = button->knopki[i].ikonka;
-          }
+        }
     }
 }
