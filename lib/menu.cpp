@@ -167,8 +167,8 @@ void appearance (BUTTON* button)
             txMouseX () > button->minX &&
             txMouseButtons() & 1 && button->isPushed)
         {
-            KARTINKA = button->knopki[i].ikonka;
-            RISOVAT_KARTINKU = false;
+            KART[0].KARTINKA = button->knopki[i].ikonka;
+            KART[0].RISOVAT_KARTINKU = false;
         }
     }
 }

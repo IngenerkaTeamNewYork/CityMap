@@ -9,6 +9,10 @@ int main()
     HDC  PrivateHouse = txLoadImage ("Icons\\Houses\\PrivateHouse.bmp");
     HDC  skyscraper = txLoadImage ("Icons\\Houses\\skyscraper.bmp");
 
+    for (int i = 0; i < w; i++)
+    {
+        KART[i] = {nullptr, 0, 0, false};
+    }
     BUTTON buttons[4];
 
     buttons[0] = {"House",  50, 250, false, {}};
@@ -53,23 +57,23 @@ int main()
             }
         }
 
-        if (txMouseY() > 100 && !RISOVAT_KARTINKU && !knopka_najata &&
+        if (txMouseY() > 100 && !KART[0].RISOVAT_KARTINKU && !knopka_najata &&
             txMouseButtons() & 1)
         { 
-            X = txMouseX();
-            Y = txMouseY();
-            RISOVAT_KARTINKU = true;
+            KART[0].X = txMouseX();
+            KART[0].Y = txMouseY();
+            KART[0].RISOVAT_KARTINKU = true;
         }
 
-        if (KARTINKA != nullptr && RISOVAT_KARTINKU)
+        if (KARTINKA != nullptr && KART[0].RISOVAT_KARTINKU)
         {
-            txBitBlt (txDC(), X, Y, 900, 900, KARTINKA, 0, 0);
+            txBitBlt (txDC(), KART[0].X, KART[0].Y, 900, 900, KART[0].KARTINKA, 0, 0);
         }
 
 
-        if (RISOVAT_KARTINKU)
+        if (KART[0].RISOVAT_KARTINKU)
             txTextOut(450, 500, "RISOVAT");
-        if (KARTINKA != nullptr)
+        if (KART[0].KARTINKA != nullptr)
             txTextOut(450, 600, "KARTINKA");
 
         txSleep(10);

@@ -34,7 +34,7 @@ void Arrows (HDC arrows)
     COLORREF color = txGetPixel(txMouseX(), txMouseY());
 
     //Стрелка вправо
-    if((txMouseButtons() & 1) && (color == RGB(0, 0, 0)) && X_COORD < 3500)
+    if((txMouseButtons() & 1) && (color == RGB(0, 0, 1)) && X_COORD < 3500)
     {
         X_COORD += 900;
         txSleep(1000);
@@ -120,10 +120,6 @@ void menu_focus(BUTTON* button)
     txSetColor (TX_BLUE);
     txSetFillColor (RGB(180,250,250));
 
-
-    if (button->isPushed)
-        txTextOut(450, 700, "1");
-
     //Нажали на кнопку
     if ((txMouseY() > 0  && txMouseY() < 50)
      && (txMouseX () > button->minX && txMouseX () < button->maxX ))
@@ -131,7 +127,7 @@ void menu_focus(BUTTON* button)
         button->isPushed = true;
     }
     //Фокус потерян
-    else if ((txMouseX () < button->minX || txMouseX () > button->maxX || txMouseY() < 0  || txMouseY() > 500))
+    else if ((txMouseX () < button->minX || txMouseX () > button->maxX || txMouseY() < 0  || txMouseY() > 400))
     {
         button->isPushed = false;
     }
@@ -172,6 +168,7 @@ void appearance (BUTTON* button)
             txMouseButtons() & 1 && button->isPushed)
         {
             KARTINKA = button->knopki[i].ikonka;
+            RISOVAT_KARTINKU = false;
         }
     }
 }
