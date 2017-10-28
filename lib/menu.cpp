@@ -1,10 +1,10 @@
 #include "TXLib.h"
-#include "configs.cpp"
+#include "cartinca.cpp"
 
 const int RASSTOYANIE_MEZHDU_KNOPKAMI = 40;
 
 //Листовой уровень
-struct BUTTON2
+struct Button2
 {
     const char* textbutton;
     int minX;
@@ -14,13 +14,13 @@ struct BUTTON2
     HDC ikonka;
 };
 
-struct BUTTON
+struct Button
 {
     const char* textbutton;
     int minX;
     int maxX;
     bool isPushed;
-    BUTTON2 knopki[15];
+    Button2 knopki[15];
     int kolvo_knopok;
 };
 
@@ -48,24 +48,45 @@ void Arrows (HDC arrows)
     }
 }
 
-void zapolnenie_mosiva1(BUTTON* button)
+void zapolnenie_mosiva(Button* button)
+{
+    for (int kolvo_eltov = 0; kolvo_eltov < 10; kolvo_eltov++)
+    {
+        button->knopki[kolvo_eltov].minX = -100 ;
+    }
+}
+
+int kolvo_eltov (Button* button)
+{
+    int kolich = 0;
+    for (int kolvo_eltov = 0; kolvo_eltov <10; kolvo_eltov++)
+    {
+        if (button->knopki[kolvo_eltov].minX != -100)
+        {
+            kolich = kolich + 1;
+        }
+    }
+
+    return kolich;
+}
+
+void zapolnenie_mosiva1(Button* button)
 {
     int y = 25;
     int nomer_elementa = 0;
+    zapolnenie_mosiva(button);
 
-    button->knopki[nomer_elementa++] =  {"    PrivateHouse",     button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false,
-        txLoadImage("Pictures\\Houses\\PrivateHouse.bmp"),     txLoadImage("Icons\\Houses\\PrivateHouse.bmp")};
-    button->knopki[nomer_elementa++] =  {"    Five-building",     button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false,
-        txLoadImage("Pictures\\Houses\\Five-building.bmp"),    txLoadImage("Icons\\Houses\\Five-building.bmp")};
-    button->knopki[nomer_elementa++] =  {"    SkyScraper",     button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false,
-        txLoadImage("Pictures\\Houses\\SkyScraper.bmp"),       txLoadImage("Icons\\Houses\\SkyScraper.bmp")};
+    button->knopki[nomer_elementa++] =  {"PrivateHouse",  button->minX +10, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Houses\\PrivateHouse.bmp"),  txLoadImage("Icons\\Houses\\PrivateHouse.bmp")};
+    button->knopki[nomer_elementa++] =  {"Five-building", button->minX +10, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Houses\\Five-building.bmp"), txLoadImage("Icons\\Houses\\Five-building.bmp")};
+    button->knopki[nomer_elementa++] =  {"SkyScraper",    button->minX +10, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Houses\\SkyScraper.bmp"),    txLoadImage("Icons\\Houses\\SkyScraper.bmp")};
 
-    button->kolvo_knopok = 3;
-
+    button->kolvo_knopok = kolvo_eltov (button);
 }
-void zapolnenie_mosiva2(BUTTON* button)
+
+void zapolnenie_mosiva2(Button* button)
 {
     int y = 25;
+    zapolnenie_mosiva(button);
     button->knopki[0] =  {"    hotel",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\PublicHouses\\hotel.bmp"), txLoadImage("Icons\\PublicHouses\\hotel.bmp")};
     button->knopki[1] =  {"    pochta",         button->minX, y = y+25, false, txLoadImage("Pictures\\PublicHouses\\pochta.bmp"), txLoadImage("Icons\\PublicHouses\\pochta.bmp")};
     button->knopki[2] =  {"    Pyatyorochka	",  button->minX, y = y+25, false, txLoadImage("Pictures\\PublicHouses\\Pyatyorochka.bmp"), txLoadImage("Icons\\PublicHouses\\Pyatyorochka.bmp")};
@@ -73,25 +94,26 @@ void zapolnenie_mosiva2(BUTTON* button)
     button->knopki[4] =  {"    museum",         button->minX, y = y+25, false, txLoadImage("Pictures\\PublicHouses\\museum.bmp"), txLoadImage("Icons\\PublicHouses\\museum.bmp")};
     button->knopki[5] =  {"    tyurima",        button->minX, y = y+25, false, txLoadImage("Pictures\\PublicHouses\\tyurima.bmp"), txLoadImage("Icons\\PublicHouses\\tyurima.bmp")};
 
-    button->kolvo_knopok = 6;
-
+    button->kolvo_knopok = kolvo_eltov (button);
 }
 
-void zapolnenie_mosiva3 (BUTTON* button)
+void zapolnenie_mosiva3 (Button* button)
 {
     int y = 25;
+    zapolnenie_mosiva(button);
 
     button->knopki[0] =  {"    Lenin",          button->minX, y = y+25, false, txLoadImage("Pictures\\Monuments\\Lenin.bmp"), txLoadImage("Icons\\Monuments\\Lenin.bmp")};
     button->knopki[1] =  {"    EiffelTower",    button->minX, y = y+25, false, txLoadImage("Pictures\\Monuments\\EiffelTower.bmp"), txLoadImage("Icons\\Monuments\\EiffelTower.bmp")};
     button->knopki[2] =  {"    StatuyaSvobodi", button->minX, y = y+25, false, txLoadImage("Pictures\\Monuments\\StatuyaSvobodi.bmp"), txLoadImage("Icons\\Monuments\\StatuyaSvobodi.bmp")};
 
-    button->kolvo_knopok = 3;
-
+    button->kolvo_knopok = kolvo_eltov (button);
 }
 
-void zapolnenie_mosiva4 (BUTTON* button)
+void zapolnenie_mosiva4 (Button* button)
 {
     int y = 25;
+    zapolnenie_mosiva(button);
+
     button->knopki[0] =  {"    Reka",          button->minX, y = y+25, false, txLoadImage("Pictures\\Roads\\Reka.bmp"), txLoadImage("Icons\\Roads\\Reka.bmp")};
     button->knopki[1] =  {"    Pole",          button->minX, y = y+25, false, txLoadImage("Pictures\\Roads\\Pole.bmp"), txLoadImage("Icons\\Roads\\Pole.bmp")};
     button->knopki[2] =  {"    SosnoviyLes",   button->minX, y = y+25, false, txLoadImage("Pictures\\Roads\\SosnoviyLes.bmp"), txLoadImage("Icons\\Roads\\SosnoviyLes.bmp")};
@@ -100,28 +122,25 @@ void zapolnenie_mosiva4 (BUTTON* button)
     button->knopki[5] =  {"    Railway",       button->minX, y = y+25, false, txLoadImage("Pictures\\Roads\\Railway.bmp"), txLoadImage("Icons\\Roads\\Railway.bmp")};
     button->knopki[6] =  {"    Doroga",        button->minX, y = y+25, false, txLoadImage("Pictures\\Roads\\Doroga.bmp"), txLoadImage("Icons\\Roads\\Doroga.bmp")};
 
-
-
-    button->kolvo_knopok = 7;
-
+    button->kolvo_knopok = kolvo_eltov (button);
 }
 
 
-void menu_draw(BUTTON* button)
+void menu_draw(Button* button)
 {
     txSetColor (TX_LIGHTBLUE);
     txSetFillColor (RGB(180,250,250));
-    txRectangle (button->minX, 0,  button->maxX, 50);
+    txRectangle (button->minX, 0,  button->maxX, HIGHT_MENU);
     txTextOut(button->minX + 50, 25, button->textbutton);
 }
 
-void menu_focus(BUTTON* button)
+void menu_focus(Button* button)
 {
     txSetColor (TX_BLUE);
     txSetFillColor (RGB(180,250,250));
 
     //Нажали на кнопку
-    if ((txMouseY() > 0  && txMouseY() < 50)
+    if ((txMouseY() > 0  && txMouseY() < HIGHT_MENU)
      && (txMouseX () > button->minX && txMouseX () < button->maxX ))
     {
         button->isPushed = true;
@@ -135,7 +154,7 @@ void menu_focus(BUTTON* button)
     if (button->isPushed)
     {
 
-        txRectangle (button->minX, 50, button->maxX, 400);
+        txRectangle (button->minX, HIGHT_MENU, button->maxX, 400);
         for (int i = 0; i < button->kolvo_knopok; i++)
         {
             txTextOut(button->knopki[i].minX, button->knopki[i].minY, button->knopki[i].textbutton);
@@ -156,7 +175,7 @@ void menu_focus(BUTTON* button)
 }
 
 
-void appearance (BUTTON* button)
+void appearance (Button* button)
 {
     for (int i = 0; i < button->kolvo_knopok; i++)
     {
