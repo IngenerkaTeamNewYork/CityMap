@@ -59,7 +59,7 @@ int main()
 
         if (txMouseY() > 100 && !KART[0].RISOVAT_KARTINKU && !knopka_najata &&
             txMouseButtons() & 1)
-        { 
+        {
             KART[0].X = txMouseX();
             KART[0].Y = txMouseY();
             KART[0].RISOVAT_KARTINKU = true;
@@ -70,12 +70,13 @@ int main()
             txBitBlt (txDC(), KART[0].X, KART[0].Y, 900, 900, KART[0].KARTINKA, 0, 0);
         }
 
-
+        if (DEBUG_MODE)
+        {
         if (KART[0].RISOVAT_KARTINKU)
             txTextOut(450, 500, "RISOVAT");
         if (KART[0].KARTINKA != nullptr)
             txTextOut(450, 600, "KARTINKA");
-
+        }
         txSleep(10);
         txEnd();
     }

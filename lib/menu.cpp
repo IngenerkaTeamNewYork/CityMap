@@ -29,8 +29,8 @@ void Arrows (HDC arrows)
     txBitBlt (txDC(), 0, 0, 908, 49, arrows, 0, 0);
 }
 
- void shift ()
- {
+void shift ()
+{
     COLORREF color = txGetPixel(txMouseX(), txMouseY());
 
     //Стрелка вправо

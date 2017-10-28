@@ -3,7 +3,7 @@ HDC KARTINKA = nullptr;
 int X;
 int Y;
 bool RISOVAT_KARTINKU = false;
-const bool DEBUG_MODE = true;
+const bool DEBUG_MODe = false
 
 struct cartinca
 {
