@@ -4,6 +4,13 @@ int X;
 int Y;
 bool RISOVAT_KARTINKU = false;
 const bool DEBUG_MODE = true;
+const int VISOTA_MENU = 50;
+const int X_ICRANA = 100;
+const int Y_ICRANA = 1000;
+const int RASSTOYANIE_MEZHDU_KNOPKAMI = 40;
+const int NIZHINIY_Y = 400;
+const int M_X_PLUS_COORDINATA = 150;
+const int M_Y_PLUS_COORDINATA = 200;
 
 struct cartinca
 {
@@ -13,5 +20,5 @@ struct cartinca
     bool RISOVAT_KARTINKU;
 };
 
-int w = 10;
-cartinca KART[10];
+const int w = 4;
+cartinca KART[w];
