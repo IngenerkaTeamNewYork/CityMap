@@ -1,7 +1,7 @@
 #include "TXLib.h"
 #include "configs.cpp"
 
-const int RASSTOYANIE_MEZHDU_KNOPKAMI = 40;
+
 
 //Листовой уровень
 struct BUTTON2
@@ -36,21 +36,21 @@ void Arrows (HDC arrows)
     //Стрелка вправо
     if((txMouseButtons() & 1) && (color == RGB(0, 0, 1)) && X_COORD < 3500)
     {
-        X_COORD += 900;
+        X_COORD += X_ICRANA;
         txSleep(1000);
     }
 
     //Стрелка влево
     if((txMouseButtons() & 1) && (color == RGB(1, 0, 0)) && X_COORD > 0)
     {
-        X_COORD -= 900;
+        X_COORD -= X_ICRANA;
         txSleep(1000);
     }
 }
 
 void zapolnenie_mosiva1(BUTTON* button)
 {
-    int y = 25;
+    int y = VISOTA_MENU / 2;
     int nomer_elementa = 0;
 
     button->knopki[nomer_elementa++] =  {"    PrivateHouse",     button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false,
@@ -111,8 +111,8 @@ void menu_draw(BUTTON* button)
 {
     txSetColor (TX_LIGHTBLUE);
     txSetFillColor (RGB(180,250,250));
-    txRectangle (button->minX, 0,  button->maxX, 50);
-    txTextOut(button->minX + 50, 25, button->textbutton);
+    txRectangle (button->minX, 0,  button->maxX, VISOTA_MENU);
+    txTextOut(button->minX + VISOTA_MENU, VISOTA_MENU / 2, button->textbutton);
 }
 
 void menu_focus(BUTTON* button)
@@ -121,13 +121,13 @@ void menu_focus(BUTTON* button)
     txSetFillColor (RGB(180,250,250));
 
     //Нажали на кнопку
-    if ((txMouseY() > 0  && txMouseY() < 50)
+    if ((txMouseY() > 0  && txMouseY() < VISOTA_MENU)
      && (txMouseX () > button->minX && txMouseX () < button->maxX ))
     {
         button->isPushed = true;
     }
     //Фокус потерян
-    else if ((txMouseX () < button->minX || txMouseX () > button->maxX || txMouseY() < 0  || txMouseY() > 400))
+    else if ((txMouseX () < button->minX || txMouseX () > button->maxX || txMouseY() < 0  || txMouseY() > NIZHINIY_Y))
     {
         button->isPushed = false;
     }
@@ -135,7 +135,7 @@ void menu_focus(BUTTON* button)
     if (button->isPushed)
     {
 
-        txRectangle (button->minX, 50, button->maxX, 400);
+        txRectangle (button->minX, VISOTA_MENU, button->maxX, NIZHINIY_Y);
         for (int i = 0; i < button->kolvo_knopok; i++)
         {
             txTextOut(button->knopki[i].minX, button->knopki[i].minY, button->knopki[i].textbutton);
@@ -149,7 +149,7 @@ void menu_focus(BUTTON* button)
                 txMouseX () < button->maxX &&
                 txMouseX () > button->minX)
             {
-                txBitBlt (txDC(), txMouseX(), txMouseY(), txMouseX() + 150, txMouseY() + 200, button->knopki[i].pic, 0, 0);
+                txBitBlt (txDC(), txMouseX(), txMouseY(), txMouseX() + M_X_PLUS_COORDINATA, txMouseY() + M_Y_PLUS_COORDINATA, button->knopki[i].pic, 0, 0);
             }
         }
     }

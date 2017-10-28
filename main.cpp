@@ -1,9 +1,10 @@
 #include "TXLib.h"
 #include "lib\\menu.cpp"
 
+
 int main()
 {
-    txCreateWindow (900, 900);
+    txCreateWindow (X_ICRANA, Y_ICRANA);
     HDC  fon = txLoadImage ("Pictures\\fon.bmp");
     HDC  arrows = txLoadImage ("Pictures\\arrows.bmp");
     HDC  PrivateHouse = txLoadImage ("Icons\\Houses\\PrivateHouse.bmp");
@@ -13,7 +14,7 @@ int main()
     {
         KART[i] = {nullptr, 0, 0, false};
     }
-    BUTTON buttons[4];
+    BUTTON buttons[w];
 
     buttons[0] = {"House",  50, 250, false, {}};
     buttons[1] = {"Public houses", 250, 450, false, {}};
@@ -30,7 +31,7 @@ int main()
         txBegin();
         txSetFillColor(TX_BLACK);
         txClear();
-        txBitBlt (txDC(), 0, 50, 900, 900, fon, X_COORD, 0);
+        txBitBlt (txDC(), 0, VISOTA_MENU, txGetExtentX(), txGetExtentY(), fon, X_COORD, 0);
         Arrows (arrows);
         map1 (PrivateHouse, skyscraper);
 
@@ -42,14 +43,14 @@ int main()
 
         txSetColor (TX_LIGHTBLUE);
 
-        for (int nomer_knopki = 0; nomer_knopki < 4; nomer_knopki++)
+        for (int nomer_knopki = 0; nomer_knopki < w; nomer_knopki++)
         {
             menu_focus(&buttons[nomer_knopki]);
             menu_draw(&buttons[nomer_knopki]);
         }
 
         bool knopka_najata = false;
-        for (int nomer_knopki = 0; nomer_knopki < 4; nomer_knopki++)
+        for (int nomer_knopki = 0; nomer_knopki < w; nomer_knopki++)
         {
             if (buttons[nomer_knopki].isPushed)
             {
@@ -57,17 +58,17 @@ int main()
             }
         }
 
-        if (txMouseY() > 100 && !KART[0].RISOVAT_KARTINKU && !knopka_najata &&
+        if (txMouseY() > VISOTA_MENU && !KART[0].RISOVAT_KARTINKU && !knopka_najata &&
             txMouseButtons() & 1)
-        { 
+        {
             KART[0].X = txMouseX();
             KART[0].Y = txMouseY();
             KART[0].RISOVAT_KARTINKU = true;
         }
 
-        if (KARTINKA != nullptr && KART[0].RISOVAT_KARTINKU)
+        if (KART[0].KARTINKA != nullptr && KART[0].RISOVAT_KARTINKU)
         {
-            txBitBlt (txDC(), KART[0].X, KART[0].Y, 900, 900, KART[0].KARTINKA, 0, 0);
+            txBitBlt (txDC(), KART[0].X, KART[0].Y, X_ICRANA, Y_ICRANA, KART[0].KARTINKA, 0, 0);
         }
 
 
@@ -81,7 +82,7 @@ int main()
     }
 
     for (int nomer_zagolovka = 0;
-        nomer_zagolovka < 4;
+        nomer_zagolovka < w;
         nomer_zagolovka++)
     {
         for (int nomer_knopki = 0;
