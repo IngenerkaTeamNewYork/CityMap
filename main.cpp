@@ -9,11 +9,11 @@ int main()
     HDC  PrivateHouse = txLoadImage ("Icons\\Houses\\PrivateHouse.bmp");
     HDC  skyscraper = txLoadImage ("Icons\\Houses\\skyscraper.bmp");
 
-    for (int i = 0; i < w; i++)
+    for (int i = 0; i < KOLICHESTVO_KARTINOK_NA_KARTE; i++)
     {
         KART[i] = {nullptr, 0, 0, false};
     }
-    BUTTON buttons[w];
+    Button buttons[KOLICHESTVO_KNOPOK_MENU];
 
     buttons[0] = {"House",  50, 250, false, {}};
     buttons[1] = {"Public houses", 250, 450, false, {}};
@@ -42,14 +42,14 @@ int main()
 
         txSetColor (TX_LIGHTBLUE);
 
-        for (int nomer_knopki = 0; nomer_knopki < w; nomer_knopki++)
+        for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
         {
             menu_focus(&buttons[nomer_knopki]);
             menu_draw(&buttons[nomer_knopki]);
         }
 
         bool knopka_najata = false;
-        for (int nomer_knopki = 0; nomer_knopki < w; nomer_knopki++)
+        for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
         {
             if (buttons[nomer_knopki].isPushed)
             {
@@ -65,7 +65,7 @@ int main()
             KART[0].RISOVAT_KARTINKU = true;
         }
 
-        if (KARTINKA != nullptr && KART[0].RISOVAT_KARTINKU)
+        if (KART[0].KARTINKA != nullptr && KART[0].RISOVAT_KARTINKU)
         {
             txBitBlt (txDC(), KART[0].X, KART[0].Y, X_ICRANA, Y_ICRANA, KART[0].KARTINKA, 0, 0);
         }
@@ -82,7 +82,7 @@ int main()
     }
 
     for (int nomer_zagolovka = 0;
-        nomer_zagolovka < w;
+        nomer_zagolovka < KOLICHESTVO_KNOPOK_MENU;
         nomer_zagolovka++)
     {
         for (int nomer_knopki = 0;
