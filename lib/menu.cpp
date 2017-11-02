@@ -1,8 +1,9 @@
 #include "TXLib.h"
 #include "configs.cpp"
+#include "cartinca.cpp"
 
 //Листовой уровень
-struct BUTTON2
+struct Button2
 {
     const char* textbutton;
     int minX;
@@ -12,13 +13,13 @@ struct BUTTON2
     HDC ikonka;
 };
 
-struct BUTTON
+struct Button
 {
     const char* textbutton;
     int minX;
     int maxX;
     bool isPushed;
-    BUTTON2 knopki[15];
+    Button2 knopki[15];
     int kolvo_knopok;
 };
 
@@ -68,7 +69,7 @@ int kolvo_eltov (Button* button)
     return kolich;
 }
 
-void zapolnenie_mosiva1(BUTTON* button)
+void zapolnenie_mosiva1(Button* button)
 {
     int y = VISOTA_MENU / 2;
     int nomer_elementa = 0;
@@ -81,7 +82,7 @@ void zapolnenie_mosiva1(BUTTON* button)
     button->kolvo_knopok = kolvo_eltov (button);
 }
 
-void zapolnenie_mosiva2(BUTTON* button)
+void zapolnenie_mosiva2(Button* button)
 {
     int y = 25;
     zapolnenie_mosiva(button);
@@ -96,7 +97,7 @@ void zapolnenie_mosiva2(BUTTON* button)
     button->kolvo_knopok = kolvo_eltov (button);
 }
 
-void zapolnenie_mosiva3 (BUTTON* button)
+void zapolnenie_mosiva3 (Button* button)
 {
     int y = 25;
     zapolnenie_mosiva(button);
@@ -108,7 +109,7 @@ void zapolnenie_mosiva3 (BUTTON* button)
     button->kolvo_knopok = kolvo_eltov (button);
 }
 
-void zapolnenie_mosiva4 (BUTTON* button)
+void zapolnenie_mosiva4 (Button* button)
 {
     int y = 25;
     zapolnenie_mosiva(button);
@@ -125,18 +126,19 @@ void zapolnenie_mosiva4 (BUTTON* button)
 }
 
 
-void menu_draw(BUTTON* button)
+void menu_draw(Button* button)
 {
-    txSetColor (TX_LIGHTBLUE);
-    txSetFillColor (RGB(180,250,250));
-    txRectangle (button->minX, 0,  button->maxX, VISOTA_MENU / 2);
+    txSetColor (TX_BLACK);
+    txSetFillColor (RGB(234,237,233));
+    txRectangle (button->minX, 0,  button->maxX, VISOTA_MENU);
+    txSelectFont("Arial", 20);
     txTextOut(button->minX + 50, VISOTA_MENU / 2, button->textbutton);
 }
 
-void menu_focus(BUTTON* button)
+void menu_focus(Button* button)
 {
-    txSetColor (TX_BLUE);
-    txSetFillColor (RGB(180,250,250));
+    txSetColor (TX_BLACK);
+    txSetFillColor (RGB(234,237,233));
 
     //Нажали на кнопку
     if ((txMouseY() > 0  && txMouseY() < VISOTA_MENU)
@@ -174,7 +176,7 @@ void menu_focus(BUTTON* button)
 }
 
 
-void appearance (BUTTON* button)
+void appearance (Button* button)
 {
     for (int i = 0; i < button->kolvo_knopok; i++)
     {
