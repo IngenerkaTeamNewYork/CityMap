@@ -25,6 +25,8 @@ int main()
     zapolnenie_mosiva3(&buttons[2]);
     zapolnenie_mosiva4(&buttons[3]);
 
+    int nomer_kartinki = 0;
+
     while (!GetAsyncKeyState(VK_ESCAPE))
     {
         txBegin();
@@ -35,10 +37,10 @@ int main()
         map1 (PrivateHouse, skyscraper);
 
         shift ();
-        appearance (&buttons[0]);
-        appearance (&buttons[1]);
-        appearance (&buttons[2]);
-        appearance (&buttons[3]);
+        appearance (&buttons[0], nomer_kartinki);
+        appearance (&buttons[1], nomer_kartinki);
+        appearance (&buttons[2], nomer_kartinki);
+        appearance (&buttons[3], nomer_kartinki);
 
         txSetColor (TX_LIGHTBLUE);
 
@@ -57,25 +59,53 @@ int main()
             }
         }
 
-        if (txMouseY() > VISOTA_MENU && !KART[0].RISOVAT_KARTINKU && !knopka_najata &&
+        if (txMouseY() > VISOTA_MENU && !KART[nomer_kartinki].RISOVAT_KARTINKU && !knopka_najata &&
             txMouseButtons() & 1)
         {
-            KART[0].X = txMouseX();
-            KART[0].Y = txMouseY();
-            KART[0].RISOVAT_KARTINKU = true;
+            KART[nomer_kartinki].X = txMouseX();
+            KART[nomer_kartinki].Y = txMouseY();
+            KART[nomer_kartinki].RISOVAT_KARTINKU = true;
+            //nomer_kartinki++;
+            //txSleep(100);
         }
 
-        if (KART[0].KARTINKA != nullptr && KART[0].RISOVAT_KARTINKU)
+        bool b = false;
+        for (int i = 0; i < KOLICHESTVO_KARTINOK_NA_KARTE; i++)
         {
-            txBitBlt (txDC(), KART[0].X, KART[0].Y, X_ICRANA, Y_ICRANA, KART[0].KARTINKA, 0, 0);
-        }
+            if (KART[i].KARTINKA != nullptr && KART[i].RISOVAT_KARTINKU)
+            {
+                txBitBlt (txDC(), KART[i].X, KART[i].Y, X_ICRANA, Y_ICRANA, KART[i].KARTINKA, 0, 0);
 
+                nomer_kartinki = i + 1;
+                b = true;
+            }
+        }
         if (DEBUG_MODE)
         {
-            if (KART[0].RISOVAT_KARTINKU)
+            if (KART[nomer_kartinki].RISOVAT_KARTINKU)
                 txTextOut(450, 500, "RISOVAT");
-            if (KART[0].KARTINKA != nullptr)
+            if (KART[nomer_kartinki].KARTINKA != nullptr)
                 txTextOut(450, 600, "KARTINKA");
+            if (nomer_kartinki == 0)
+                txTextOut(450, 550, "0");
+            if (nomer_kartinki == 1)
+                txTextOut(450, 550, "1");
+            if (nomer_kartinki == 2)
+                txTextOut(450, 550, "2");
+                if (nomer_kartinki == 3)
+                txTextOut(450, 550, "3");
+                if (nomer_kartinki == 4)
+                txTextOut(450, 550, "4");
+                if (nomer_kartinki == 5)
+                txTextOut(450, 550, "5");
+                if (nomer_kartinki == 6)
+                txTextOut(450, 550, "6");
+                if (nomer_kartinki == 7)
+                txTextOut(450, 550, "7");
+        }
+        if (b)
+        {
+            txSleep(100);
         }
         txSleep(10);
         txEnd();

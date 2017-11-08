@@ -175,8 +175,7 @@ void menu_focus(Button* button)
     }
 }
 
-
-void appearance (Button* button)
+void appearance (Button* button, int nomer_kartinki)
 {
     for (int i = 0; i < button->kolvo_knopok; i++)
     {
@@ -186,8 +185,8 @@ void appearance (Button* button)
             txMouseX () > button->minX &&
             txMouseButtons() & 1 && button->isPushed)
         {
-            KART[0].KARTINKA = button->knopki[i].ikonka;
-            KART[0].RISOVAT_KARTINKU = false;
+            KART[nomer_kartinki].KARTINKA = button->knopki[i].ikonka;
+            //KART[nomer_kartinki].RISOVAT_KARTINKU = false;
         }
     }
 }
