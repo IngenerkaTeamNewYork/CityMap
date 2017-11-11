@@ -1,5 +1,6 @@
 #include "TXLib.h"
 #include "lib\\menu.cpp"
+#include "lib\\debug.cpp"
 
 int main()
 {
@@ -11,7 +12,7 @@ int main()
 
     for (int i = 0; i < KOLICHESTVO_KARTINOK_NA_KARTE; i++)
     {
-        KART[i] = {nullptr, 0, 0, false};
+        KART[i] = {NULL, 0, 0, false};
     }
     Button buttons[KOLICHESTVO_KNOPOK_MENU];
 
@@ -24,7 +25,6 @@ int main()
     zapolnenie_mosiva2(&buttons[1]);
     zapolnenie_mosiva3(&buttons[2]);
     zapolnenie_mosiva4(&buttons[3]);
-
     int nomer_kartinki = 0;
 
     while (!GetAsyncKeyState(VK_ESCAPE))
@@ -37,18 +37,6 @@ int main()
         map1 (PrivateHouse, skyscraper);
 
         shift ();
-        appearance (&buttons[0], nomer_kartinki);
-        appearance (&buttons[1], nomer_kartinki);
-        appearance (&buttons[2], nomer_kartinki);
-        appearance (&buttons[3], nomer_kartinki);
-
-        txSetColor (TX_LIGHTBLUE);
-
-        for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
-        {
-            menu_focus(&buttons[nomer_knopki]);
-            menu_draw(&buttons[nomer_knopki]);
-        }
 
         bool knopka_najata = false;
         for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
@@ -65,50 +53,43 @@ int main()
             KART[nomer_kartinki].X = txMouseX();
             KART[nomer_kartinki].Y = txMouseY();
             KART[nomer_kartinki].RISOVAT_KARTINKU = true;
-            //nomer_kartinki++;
-            //txSleep(100);
+            KART[nomer_kartinki].X = round((15+txMouseX())/30)*30;
+            KART[nomer_kartinki].Y = round((15+txMouseY())/30)*30 - 10;
         }
 
-        bool b = false;
+        debug_function(nomer_kartinki);
+        bool pausa = false;
         for (int i = 0; i < KOLICHESTVO_KARTINOK_NA_KARTE; i++)
         {
-            if (KART[i].KARTINKA != nullptr && KART[i].RISOVAT_KARTINKU)
-            {
-                txBitBlt (txDC(), KART[i].X, KART[i].Y, X_ICRANA, Y_ICRANA, KART[i].KARTINKA, 0, 0);
 
-                nomer_kartinki = i + 1;
-                b = true;
-            }
-        }
-        if (DEBUG_MODE)
+        if (KART[i].KARTINKA != NULL && KART[i].RISOVAT_KARTINKU)
         {
-            if (KART[nomer_kartinki].RISOVAT_KARTINKU)
-                txTextOut(450, 500, "RISOVAT");
-            if (KART[nomer_kartinki].KARTINKA != nullptr)
-                txTextOut(450, 600, "KARTINKA");
-            if (nomer_kartinki == 0)
-                txTextOut(450, 550, "0");
-            if (nomer_kartinki == 1)
-                txTextOut(450, 550, "1");
-            if (nomer_kartinki == 2)
-                txTextOut(450, 550, "2");
-                if (nomer_kartinki == 3)
-                txTextOut(450, 550, "3");
-                if (nomer_kartinki == 4)
-                txTextOut(450, 550, "4");
-                if (nomer_kartinki == 5)
-                txTextOut(450, 550, "5");
-                if (nomer_kartinki == 6)
-                txTextOut(450, 550, "6");
-                if (nomer_kartinki == 7)
-                txTextOut(450, 550, "7");
+            txBitBlt (txDC(), KART[i].X, KART[i].Y, X_ICRANA, Y_ICRANA, KART[i].KARTINKA, 0, 0);
+            nomer_kartinki = i + 1;
+            pausa = true;
         }
-        if (b)
+        }
+
+        appearance (&buttons[0], nomer_kartinki);
+        appearance (&buttons[1], nomer_kartinki);
+        appearance (&buttons[2], nomer_kartinki);
+        appearance (&buttons[3], nomer_kartinki);
+
+        for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
+        {
+            menu_focus(&buttons[nomer_knopki]);
+            menu_draw(&buttons[nomer_knopki]);
+        }
+
+        if (pausa)
         {
             txSleep(100);
         }
+
+
         txSleep(10);
         txEnd();
+
     }
 
     for (int nomer_zagolovka = 0;
