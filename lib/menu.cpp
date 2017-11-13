@@ -198,55 +198,30 @@ void appearance (Button* button, int nomer_kartinki)
         {
             KART[nomer_kartinki].KARTINKA = button->knopki[i].ikonka;
             KART[nomer_kartinki].RISOVAT_KARTINKU = false;
-
         }
     }
 }
 
 int zapolnenie_kartinok(CartincaNaKarte* KART1)
 {
-    HDC  PrivateHouse = txLoadImage ("Icons\\Houses\\PrivateHouse.bmp");
-    HDC  skyscraper = txLoadImage ("Icons\\Houses\\skyscraper.bmp");
-    int nomer = 0;
-    KART1[0] = {skyscraper,     200, 200, true};
-    KART1[1] = {PrivateHouse,   200, 400, true};
-    KART1[2] = {skyscraper,     400, 200, true};
-    KART1[3] = {PrivateHouse,   300, 200, true};
-    KART1[4] = {skyscraper,     200, 300, true};
-    KART1[5] = {PrivateHouse,   300, 300, true};
-    KART1[6] = {skyscraper,     600, 200, true};
-    KART1[7] = {PrivateHouse,   700, 300, true};
-    KART1[8] = {skyscraper,     800, 200, true};
-    KART1[9] = {PrivateHouse,   400, 500, true};
-    KART1[10] = {skyscraper,    500, 600, true};
-    KART1[11] = {skyscraper,    600, 700, true};
+    KART1[0] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     200, 200, true};
+    KART1[1] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   200, 400, true};
+    KART1[2] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     400, 200, true};
+    KART1[3] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   300, 200, true};
+    KART1[4] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     200, 300, true};
+    KART1[5] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   300, 300, true};
+    KART1[6] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     600, 200, true};
+    KART1[7] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   700, 300, true};
+    KART1[8] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     800, 200, true};
+    KART1[9] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   400, 500, true};
+    KART1[10] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),    500, 600, true};
+    KART1[11] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),    600, 700, true};
 
-    txDeleteDC(PrivateHouse);
-    txDeleteDC(skyscraper);
-
-    return 12;
-}
-
-void map1 (HDC PrivateHouse, HDC skyscraper)
-{
-    CartincaNaKarte KART1[12];
-    KART1[0] = {skyscraper,     200, 200, true};
-    KART1[1] = {PrivateHouse,   200, 400, true};
-    KART1[2] = {skyscraper,     400, 200, true};
-    KART1[3] = {PrivateHouse,   300, 200, true};
-    KART1[4] = {skyscraper,     200, 300, true};
-    KART1[5] = {PrivateHouse,   300, 300, true};
-    KART1[6] = {skyscraper,     600, 200, true};
-    KART1[7] = {PrivateHouse,   700, 300, true};
-    KART1[8] = {skyscraper,     800, 200, true};
-    KART1[9] = {PrivateHouse,   400, 500, true};
-    KART1[10] = {skyscraper,    500, 600, true};
-    KART1[11] = {skyscraper,    600, 700, true};
-
-    for (int nomer = 0; nomer < 13; nomer++)
+    for (int nomer = 0; nomer < 12; nomer++)
     {
         KART1[nomer].X = round((15+KART1[nomer].X)/30)*30;
         KART1[nomer].Y = round((15+KART1[nomer].Y)/30)*30 - 10;
-        txBitBlt (txDC(), KART1[nomer].X, KART1[nomer].Y, 30, 30, KART1[nomer].KARTINKA);
     }
+
+    return 12;
 }

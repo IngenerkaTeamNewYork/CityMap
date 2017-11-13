@@ -21,4 +21,4 @@ struct CartincaNaKarte
     bool RISOVAT_KARTINKU;
 };
 
-CartincaNaKarte KART[KOLICHESTVO_KARTINOK_NA_KARTE];
+CartincaNaKarte* KART = new CartincaNaKarte[KOLICHESTVO_KARTINOK_NA_KARTE];

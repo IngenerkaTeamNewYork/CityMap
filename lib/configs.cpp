@@ -2,7 +2,7 @@
 #include "TXLib.h"
 
 //Debugging
-const bool DEBUG_MODE = true;
+const bool DEBUG_MODE = false;
 
 //Menu displaying
 const int VISOTA_MENU = 50;
@@ -14,7 +14,7 @@ const int M_Y_PLUS_COORDINATA = 200;
 //Screen size
 int X_COORD = 0;
 const int X_ICRANA = 900;
-const int Y_ICRANA = 600;
+const int Y_ICRANA = 650;
 
 //Arrays
 const int KOLICHESTVO_KNOPOK_MENU = 4;

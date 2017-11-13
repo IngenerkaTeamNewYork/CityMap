@@ -7,8 +7,6 @@ int main()
     txCreateWindow (X_ICRANA, Y_ICRANA);
     HDC  fon = txLoadImage ("Pictures\\fon.bmp");
     HDC  arrows = txLoadImage ("Pictures\\arrows.bmp");
-    HDC  PrivateHouse = txLoadImage ("Icons\\Houses\\PrivateHouse.bmp");
-    HDC  skyscraper = txLoadImage ("Icons\\Houses\\skyscraper.bmp");
 
     for (int i = 0; i < KOLICHESTVO_KARTINOK_NA_KARTE; i++)
     {
@@ -35,7 +33,6 @@ int main()
         txClear();
         txBitBlt (txDC(), 0, VISOTA_MENU, txGetExtentX(), txGetExtentY(), fon, X_COORD, 0);
         Arrows (arrows);
-        //map1 (PrivateHouse, skyscraper);
 
         shift ();
 
@@ -62,13 +59,12 @@ int main()
         bool pausa = false;
         for (int i = 0; i < KOLICHESTVO_KARTINOK_NA_KARTE; i++)
         {
-
-        if (KART[i].KARTINKA != NULL && KART[i].RISOVAT_KARTINKU)
-        {
-            txBitBlt (txDC(), KART[i].X, KART[i].Y, X_ICRANA, Y_ICRANA, KART[i].KARTINKA, 0, 0);
-            nomer_kartinki = i + 1;
-            pausa = true;
-        }
+            if (KART[i].KARTINKA != NULL && KART[i].RISOVAT_KARTINKU)
+            {
+                txBitBlt (txDC(), KART[i].X, KART[i].Y, 30, 30, KART[i].KARTINKA, 0, 0);
+                nomer_kartinki = i + 1;
+                pausa = true;
+            }
         }
 
         appearance (&buttons[0], nomer_kartinki);
@@ -90,7 +86,6 @@ int main()
 
         txSleep(10);
         txEnd();
-
     }
 
     for (int nomer_zagolovka = 0;
@@ -108,8 +103,6 @@ int main()
 
     txDeleteDC (&fon);
     txDeleteDC (&arrows);
-    txDeleteDC (&PrivateHouse);
-    txDeleteDC (&skyscraper);
 
     return 0;
 }
