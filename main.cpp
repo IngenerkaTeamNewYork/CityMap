@@ -36,6 +36,27 @@ int main()
 
         shift ();
 
+        if (txMouseButtons() &2)
+        {
+            for (int nomer = 0; nomer < nomer_kartinki; nomer++)
+            {
+                if (KART[nomer].X >= txMouseX() - 15 &&
+                    KART[nomer].X <= txMouseX() + 15 &&
+                    KART[nomer].Y >= txMouseY() - 15 &&
+                    KART[nomer].Y <= txMouseY() + 15)
+                {
+                  KART[nomer].RISOVAT_KARTINKU = false;
+                  KART[nomer].KARTINKA = NULL;
+                  nomer_kartinki = nomer - 1;
+                  txSleep (10);
+                }
+            }
+            //if (txMouseButtons() & 1) KART  (txMouseX(), txMouseY(), 20);
+            //if (txMouseButtons() & 2) KART  (txMouseX(), txMouseY(), 0, 0);
+            //txSleep (50);
+        }
+
+
         bool knopka_najata = false;
         for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
         {
