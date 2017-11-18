@@ -40,15 +40,15 @@ int main()
         {
             for (int nomer = 0; nomer < nomer_kartinki; nomer++)
             {
-                if (KART[nomer].X >= txMouseX() - 15 &&
-                    KART[nomer].X <= txMouseX() + 15 &&
+                if (KART[nomer].X - X_COORD >= txMouseX() - 15 &&
+                    KART[nomer].X - X_COORD <= txMouseX() + 15 &&
                     KART[nomer].Y >= txMouseY() - 15 &&
                     KART[nomer].Y <= txMouseY() + 15)
                 {
                   KART[nomer].RISOVAT_KARTINKU = false;
                   KART[nomer].KARTINKA = NULL;
                   nomer_kartinki = nomer - 1;
-                  txSleep (10);
+                  txSleep (5);
                 }
             }
             //if (txMouseButtons() & 1) KART  (txMouseX(), txMouseY(), 20);
@@ -72,7 +72,7 @@ int main()
             KART[nomer_kartinki].X = txMouseX();
             KART[nomer_kartinki].Y = txMouseY();
             KART[nomer_kartinki].RISOVAT_KARTINKU = true;
-            KART[nomer_kartinki].X = round((15+txMouseX())/30)*30;
+            KART[nomer_kartinki].X = round((X_COORD+txMouseX())/30)*30;
             KART[nomer_kartinki].Y = round((15+txMouseY())/30)*30 - 10;
         }
 
@@ -82,7 +82,7 @@ int main()
         {
             if (KART[i].KARTINKA != NULL && KART[i].RISOVAT_KARTINKU)
             {
-                txBitBlt (txDC(), KART[i].X, KART[i].Y, 30, 30, KART[i].KARTINKA, 0, 0);
+                txBitBlt (txDC(), KART[i].X - X_COORD, KART[i].Y, 30, 30, KART[i].KARTINKA, 0, 0);
                 nomer_kartinki = i + 1;
                 pausa = true;
             }
