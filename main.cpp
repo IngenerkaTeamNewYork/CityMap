@@ -1,6 +1,10 @@
 #include "TXLib.h"
 #include "lib\\menu.cpp"
 #include "lib\\debug.cpp"
+#include "lib\\iluiui.cpp"
+
+#include "lib\\rounding.cpp"
+
 
 int main()
 {
@@ -36,27 +40,25 @@ int main()
 
         shift ();
 
-        if (txMouseButtons() &2)
-        {
-            for (int nomer = 0; nomer < nomer_kartinki; nomer++)
-            {
-                if (KART[nomer].X >= txMouseX() - 15 &&
-                    KART[nomer].X <= txMouseX() + 15 &&
-                    KART[nomer].Y >= txMouseY() - 15 &&
-                    KART[nomer].Y <= txMouseY() + 15)
-                {
-                  KART[nomer].RISOVAT_KARTINKU = false;
-                  KART[nomer].KARTINKA = NULL;
-                  nomer_kartinki = nomer - 1;
-                  txSleep (10);
-                }
-            }
-            //if (txMouseButtons() & 1) KART  (txMouseX(), txMouseY(), 20);
-            //if (txMouseButtons() & 2) KART  (txMouseX(), txMouseY(), 0, 0);
-            //txSleep (50);
-        }
-
-
+         if (txMouseButtons() &2)
+         {
+             for (int nomer = 0; nomer < nomer_kartinki; nomer++)
+             {
+                 if (KART[nomer].X >= txMouseX() - 15 &&
+                     KART[nomer].X <= txMouseX() + 15 &&
+                     KART[nomer].Y >= txMouseY() - 15 &&
+                     KART[nomer].Y <= txMouseY() + 15)
+                 {
+                   KART[nomer].RISOVAT_KARTINKU = false;
+                   KART[nomer].KARTINKA = NULL;
+                   nomer_kartinki = nomer - 1;
+                   txSleep (10);
+                 }
+             }
+             //if (txMouseButtons() & 1) KART  (txMouseX(), txMouseY(), 20);
+             //if (txMouseButtons() & 2) KART  (txMouseX(), txMouseY(), 0, 0);
+             //txSleep (50);
+         }
         bool knopka_najata = false;
         for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
         {
@@ -69,11 +71,21 @@ int main()
         if (txMouseY() > VISOTA_MENU && !KART[nomer_kartinki].RISOVAT_KARTINKU && !knopka_najata &&
             txMouseButtons() & 1)
         {
-            KART[nomer_kartinki].X = txMouseX();
-            KART[nomer_kartinki].Y = txMouseY();
-            KART[nomer_kartinki].RISOVAT_KARTINKU = true;
-            KART[nomer_kartinki].X = round((15+txMouseX())/30)*30;
-            KART[nomer_kartinki].Y = round((15+txMouseY())/30)*30 - 10;
+
+            round (&KART[nomer_kartinki], txMouseX(), txMouseY());
+            bool many = false;
+            for (int p = 0; p < nomer_kartinki; p++)
+            {
+                if ((KART[nomer_kartinki].X == KART[p].X && KART[nomer_kartinki].Y == KART[p].Y))
+                {
+                    many = true;
+                }
+            }
+
+            if (!many)
+            {
+                KART[nomer_kartinki].RISOVAT_KARTINKU = true;
+            }
         }
 
         debug_function(nomer_kartinki);

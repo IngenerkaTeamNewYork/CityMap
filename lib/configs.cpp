@@ -18,4 +18,6 @@ const int Y_ICRANA = 650;
 
 //Arrays
 const int KOLICHESTVO_KNOPOK_MENU = 4;
-const int KOLICHESTVO_KARTINOK_NA_KARTE = 100;
+const int KOLICHESTVO_KARTINOK_NA_KARTE = 1000;
+
+const int ROUNDING = 30;
