@@ -2,9 +2,11 @@
 
 #include "TXLib.h"
 #include "configs.cpp"
+#include "rounding.cpp"
 #include "cartinca.cpp"
+#include "iluiui.cpp"
 
-//Листовой уровень
+//Г‹ГЁГ±ГІГ®ГўГ®Г© ГіГ°Г®ГўГҐГ­Гј
 struct Button2
 {
     const char* textbutton;
@@ -34,14 +36,14 @@ void shift ()
 {
     COLORREF color = txGetPixel(txMouseX(), txMouseY());
 
-    //Стрелка вправо
+    //Г‘ГІГ°ГҐГ«ГЄГ  ГўГЇГ°Г ГўГ®
     if((txMouseButtons() & 1) && (color == RGB(0, 0, 1)) && X_COORD < 3500)
     {
         X_COORD += X_ICRANA;
         txSleep(1000);
     }
 
-    //Стрелка влево
+    //Г‘ГІГ°ГҐГ«ГЄГ  ГўГ«ГҐГўГ®
     if((txMouseButtons() & 1) && (color == RGB(1, 0, 0)) && X_COORD > 0)
     {
         X_COORD -= X_ICRANA;
@@ -86,7 +88,7 @@ void zapolnenie_mosiva1(Button* button)
 
 void zapolnenie_mosiva2(Button* button)
 {
-    int y = 25;
+    int y = VISOTA_MENU / 2;
     zapolnenie_mosiva(button);
 
     button->knopki[0] =  {"hotel",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\PublicHouses\\hotel.bmp"), txLoadImage("Icons\\PublicHouses\\hotel.bmp")};
@@ -101,7 +103,7 @@ void zapolnenie_mosiva2(Button* button)
 
 void zapolnenie_mosiva3 (Button* button)
 {
-    int y = 25;
+    int y = VISOTA_MENU / 2;
     zapolnenie_mosiva(button);
 
     button->knopki[0] =  {"Lenin",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Monuments\\Lenin.bmp"), txLoadImage("Icons\\Monuments\\Lenin.bmp")};
@@ -113,7 +115,7 @@ void zapolnenie_mosiva3 (Button* button)
 
 void zapolnenie_mosiva4 (Button* button)
 {
-    int y = 25;
+    int y = VISOTA_MENU / 2;
     zapolnenie_mosiva(button);
 
     button->knopki[0] =  {"Reka",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Roads\\Reka.bmp"), txLoadImage("Icons\\Roads\\Reka.bmp")};
@@ -142,13 +144,13 @@ void menu_focus(Button* button)
     txSetColor (TX_BLACK);
     txSetFillColor (RGB(234,237,233));
 
-    //Нажали на кнопку
+    //ГЌГ Г¦Г Г«ГЁ Г­Г  ГЄГ­Г®ГЇГЄГі
     if ((txMouseY() > 0  && txMouseY() < VISOTA_MENU)
      && (txMouseX () > button->minX && txMouseX () < button->maxX ))
     {
         button->isPushed = true;
     }
-    //Фокус потерян
+    //Г”Г®ГЄГіГ± ГЇГ®ГІГҐГ°ГїГ­
     else if ((txMouseX () < button->minX || txMouseX () > button->maxX || txMouseY() < 0  || txMouseY() > NIZHINIY_Y))
     {
         button->isPushed = false;
@@ -162,7 +164,7 @@ void menu_focus(Button* button)
         {
             txTextOut(button->knopki[i].minX, button->knopki[i].minY, button->knopki[i].textbutton);
         }
-        //Фокус на нужной подкнопке
+        //Г”Г®ГЄГіГ± Г­Г  Г­ГіГ¦Г­Г®Г© ГЇГ®Г¤ГЄГ­Г®ГЇГЄГҐ
         for (int i = 0; i < button->kolvo_knopok; i++)
         {
             if (
@@ -188,8 +190,8 @@ void appearance (Button* button, int nomer_kartinki)
             txMouseX () > button->minX &&
             txMouseButtons() & 1 && button->isPushed)
         {
-            for (int nom_kart = nomer_kartinki; nom_kart < KOLICHESTVO_KARTINOK_NA_KARTE; nom_kart++)
-            {
+             for (int nom_kart = nomer_kartinki; nom_kart < KOLICHESTVO_KARTINOK_NA_KARTE; nom_kart++)
+             {
                 KART[nom_kart].KARTINKA = button->knopki[nom_but].ikonka;
                 KART[nom_kart].RISOVAT_KARTINKU = false;
             }
@@ -199,24 +201,12 @@ void appearance (Button* button, int nomer_kartinki)
 
 int zapolnenie_kartinok(CartincaNaKarte* KART1)
 {
-    KART1[0] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     200, 200, true};
-    KART1[1] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   200, 400, true};
-    KART1[2] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     400, 200, true};
-    KART1[3] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   300, 200, true};
-    KART1[4] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     200, 300, true};
-    KART1[5] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   300, 300, true};
-    KART1[6] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     600, 200, true};
-    KART1[7] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   700, 300, true};
-    KART1[8] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),     800, 200, true};
-    KART1[9] = {txLoadImage ("Icons\\Houses\\PrivateHouse.bmp"),   400, 500, true};
-    KART1[10] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),    500, 600, true};
-    KART1[11] = {txLoadImage ("Icons\\Houses\\skyscraper.bmp"),    600, 700, true};
+    int kolvo = massive(KART1);
 
-    for (int nomer = 0; nomer < 12; nomer++)
+    for (int nomer = 0; nomer < kolvo; nomer++)
     {
-        KART1[nomer].X = round((15+KART1[nomer].X)/30)*30;
-        KART1[nomer].Y = round((15+KART1[nomer].Y)/30)*30 - 10;
+        round(&KART1[nomer], KART1[nomer].X, KART1[nomer].Y);
     }
 
-    return 12;
+    return kolvo;
 }
