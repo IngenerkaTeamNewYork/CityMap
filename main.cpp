@@ -36,6 +36,23 @@ int main()
 
         shift ();
 
+        if (txMouseButtons() &2)
+        {
+            for (int nomer = 0; nomer < nomer_kartinki; nomer++)
+            {
+                if (KART[nomer].X - X_COORD >= txMouseX() - 15 &&
+                    KART[nomer].X - X_COORD <= txMouseX() + 15 &&
+                    KART[nomer].Y >= txMouseY() - 15 &&
+                    KART[nomer].Y <= txMouseY() + 15)
+                {
+                  KART[nomer].RISOVAT_KARTINKU = false;
+                  KART[nomer].KARTINKA = NULL;
+                  nomer_kartinki = nomer - 1;
+                  txSleep (5);
+                }
+            }
+        }
+
         bool knopka_najata = false;
         for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
         {
@@ -44,7 +61,6 @@ int main()
                 knopka_najata = true;
             }
         }
-
 
         if (txMouseY() > VISOTA_MENU && !KART[nomer_kartinki].RISOVAT_KARTINKU && !knopka_najata &&
             txMouseButtons() & 1)
@@ -73,7 +89,7 @@ int main()
         {
             if (KART[i].KARTINKA != NULL && KART[i].RISOVAT_KARTINKU)
             {
-                txBitBlt (txDC(), KART[i].X, KART[i].Y, 30, 30, KART[i].KARTINKA, 0, 0);
+                txBitBlt (txDC(), KART[i].X - X_COORD, KART[i].Y, 30, 30, KART[i].KARTINKA, 0, 0);
                 nomer_kartinki = i + 1;
                 pausa = true;
             }
