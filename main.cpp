@@ -1,7 +1,7 @@
 #include "TXLib.h"
 #include "lib\\menu.cpp"
 #include "lib\\debug.cpp"
-#include "lib\\iluiui.cpp"
+#include "lib\\file.cpp"
 #include "lib\\rounding.cpp"
 
 int main()
@@ -67,7 +67,7 @@ int main()
         if (txMouseY() > VISOTA_MENU && !KART[nomer_kartinki].RISOVAT_KARTINKU && !knopka_najata &&
             txMouseButtons() & 1)
         {
-            round (&KART[nomer_kartinki], txMouseX(), txMouseY());
+            round (&KART[nomer_kartinki], X_COORD + txMouseX(), txMouseY());
             bool many = false;
 
             for (int p = 0; p < nomer_kartinki; p++)

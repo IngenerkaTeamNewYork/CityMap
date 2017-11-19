@@ -10,6 +10,7 @@ struct CartincaNaKarte
     int X;
     int Y;
     bool RISOVAT_KARTINKU;
+    string adress;
 };
 
 CartincaNaKarte* KART = new CartincaNaKarte[KOLICHESTVO_KARTINOK_NA_KARTE];
