@@ -180,24 +180,19 @@ void menu_focus(Button* button)
 
 void appearance (Button* button, int nomer_kartinki)
 {
-    for (int i = 0; i < button->kolvo_knopok; i++)
+    for (int nom_but = 0; nom_but < button->kolvo_knopok; nom_but++)
     {
-
-
-        /*if (txMouseY() >= 0  &&
-            txMouseY() <= 100 &&
-            txMouseX () <= 200 &&
-            txMouseX () >= 400 &&
-            txMouseButtons() & 1) */
-
-        if (txMouseY() > button->knopki[i].minY  &&
-            txMouseY() < button->knopki[i].minY + VISOTA_MENU &&
+        if (txMouseY() > button->knopki[nom_but].minY  &&
+            txMouseY() < button->knopki[nom_but].minY + VISOTA_MENU &&
             txMouseX () < button->maxX &&
             txMouseX () > button->minX &&
             txMouseButtons() & 1 && button->isPushed)
         {
-            KART[nomer_kartinki].KARTINKA = button->knopki[i].ikonka;
-            KART[nomer_kartinki].RISOVAT_KARTINKU = false;
+            for (int nom_kart = nomer_kartinki; nom_kart < KOLICHESTVO_KARTINOK_NA_KARTE; nom_kart++)
+            {
+                KART[nom_kart].KARTINKA = button->knopki[nom_but].ikonka;
+                KART[nom_kart].RISOVAT_KARTINKU = false;
+            }
         }
     }
 }
