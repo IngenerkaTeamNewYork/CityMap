@@ -40,33 +40,6 @@ int main()
 
         if (txMouseButtons() &2)
         {
-            for (int nomer = 0; nomer < nomer_kartinki; nomer++)
-            {
-                if (KART[nomer].X - X_COORD >= txMouseX() - 15 &&
-                    KART[nomer].X - X_COORD <= txMouseX() + 15 &&
-                    KART[nomer].Y >= txMouseY() - 15 &&
-                    KART[nomer].Y <= txMouseY() + 15)
-                {
-                  KART[nomer].RISOVAT_KARTINKU = false;
-                  KART[nomer].KARTINKA = NULL;
-                  nomer_kartinki = nomer - 1;
-                  txSleep (5);
-                }
-            }
-        }
-
-        bool knopka_najata = false;
-        for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
-        {
-            if (buttons[nomer_knopki].isPushed)
-            {
-                knopka_najata = true;
-            }
-        }
-
-        if (txMouseY() > VISOTA_MENU && !KART[nomer_kartinki].RISOVAT_KARTINKU && !knopka_najata &&
-            txMouseButtons() & 1)
-        {
             round (&KART[nomer_kartinki], X_COORD + txMouseX(), txMouseY());
             bool many = false;
 
