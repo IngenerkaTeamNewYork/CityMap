@@ -13,8 +13,9 @@ const int M_Y_PLUS_COORDINATA = 200;
 
 //Screen size
 int X_COORD = 0;
-const int X_ICRANA = 900;
+const int X_ICRANA = 1100;
 const int Y_ICRANA = 650;
+const int SHIR_KNOPKI = (X_ICRANA - 100) / 4;
 
 //Arrays
 const int KOLICHESTVO_KNOPOK_MENU = 4;

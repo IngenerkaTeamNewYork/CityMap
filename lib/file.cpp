@@ -20,23 +20,26 @@ int massive(CartincaNaKarte* KART1)
     fout.open(imya_faila);
 
     int nomer = 0;
-    while (fout.good()) {
-        string get;
+    string get = "1";
+    while (fout.good() && strlen(get.c_str()) > 0) {
         getline (fout, get);
 
-        int pos1 = get.find(',');
-        string adress = get.substr(0, pos1 );
-        get = get.substr(pos1 + 2);
+        if (strlen(get.c_str()) > 0)
+        {
+            int pos1 = get.find(',');
+            string adress = get.substr(0, pos1 );
+            get = get.substr(pos1 + 1);
 
-        int pos2 = get.find(',');
-        string x = get.substr(0, pos2);
-        get = get.substr(pos2 + 2);
+            int pos2 = get.find(',');
+            string x = get.substr(0, pos2);
+            get = get.substr(pos2 + 1);
 
-        int pos3 = get.find(',');
-        string y = get.substr(0, pos3);
+            int pos3 = get.find(',');
+            string y = get.substr(0, pos3);
 
-        KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
-        nomer++;
+            KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
+            nomer++;
+        }
     }
 
     fout.close();
@@ -60,7 +63,10 @@ void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
     //KART[0] = {txLoadImage("Icons\\Monuments\\Lenin.bmp"), 200, 200, true, "Icons\\Monuments\\Lenin.bmp"};
     for(int i = 0; i< nomer_kartinki; i++)
     {
-        fout_save << KART1[i].adress << "," << KART1[i].X << "," << KART1[i].Y << endl;
+        if (KART1[i].RISOVAT_KARTINKU)
+        {
+            fout_save << KART1[i].adress << "," << KART1[i].X << "," << KART1[i].Y << endl;
+        }
     }
 
     fout.close();
