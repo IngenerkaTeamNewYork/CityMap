@@ -132,6 +132,8 @@ int main()
 
     txDeleteDC (&fon);
     txDeleteDC (&arrows);
+    saveMassive(KART, nomer_kartinki);
+
 
     return 0;
 }

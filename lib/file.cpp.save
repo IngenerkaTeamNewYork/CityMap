@@ -47,20 +47,20 @@ int massive(CartincaNaKarte* KART1)
 void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
 {
     ifstream fout;
-    fout.open("Files\\savefile.txt");
-    string imya_faila_save;
-    getline (fout, imya_faila_save);
+    fout.open("Files\\file.txt");
+    string imya_faila;
+    getline (fout, imya_faila);
     fout.close();
 
 
-    ofstream fout_save;
-    fout_save.open(imya_faila_save);
+    ofstream fout;
+    fout.open("gfdg.txt");
 
     //CartincaNaKarte KART[1];
     //KART[0] = {txLoadImage("Icons\\Monuments\\Lenin.bmp"), 200, 200, true, "Icons\\Monuments\\Lenin.bmp"};
     for(int i = 0; i< nomer_kartinki; i++)
     {
-        fout_save << KART1[i].adress << "," << KART1[i].X << "," << KART1[i].Y << endl;
+        fout << KART1[i].adress << "," << KART1[i].X << "," << KART1[i].Y << endl;
     }
 
     fout.close();
