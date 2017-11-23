@@ -30,7 +30,8 @@ struct Button
 
 void Arrows (HDC arrows)
 {
-    txBitBlt (txDC(), 0, 0, X_ICRANA, VISOTA_MENU - 1, arrows, 0, 0);
+    txBitBlt (txDC(), 0, 0, 50, VISOTA_MENU - 1, arrows, 0, 0);
+    txBitBlt (txDC(), X_ICRANA - 50, 0, 50, VISOTA_MENU + 1, arrows, 850, 0);
 }
 
 void shift ()

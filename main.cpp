@@ -16,10 +16,10 @@ int main()
     }
     Button buttons[KOLICHESTVO_KNOPOK_MENU];
 
-    buttons[0] = {"House",  50, 250, false, {}};
-    buttons[1] = {"Public houses", 250, 450, false, {}};
-    buttons[2] = {"Sightseens", 450, 650, false, {}};
-    buttons[3] = {"Landscape", 650, 850, false, {}};
+    buttons[0] = {"House",         50,                   50 + SHIR_KNOPKI,     false, {}};
+    buttons[1] = {"Public houses", 50 + SHIR_KNOPKI,     50 + 2 * SHIR_KNOPKI, false, {}};
+    buttons[2] = {"Sightseens",    50 + 2 * SHIR_KNOPKI, 50 + 3 * SHIR_KNOPKI, false, {}};
+    buttons[3] = {"Landscape",     50 + 3 * SHIR_KNOPKI, 50 + 4 * SHIR_KNOPKI, false, {}};
 
     zapolnenie_mosiva1(&buttons[0]);
     zapolnenie_mosiva2(&buttons[1]);
@@ -49,7 +49,7 @@ int main()
                 {
                   KART[nomer].RISOVAT_KARTINKU = false;
                   KART[nomer].KARTINKA = NULL;
-                  nomer_kartinki = nomer - 1;
+                  //nomer_kartinki = nomer - 1;
                   txSleep (5);
                 }
             }
