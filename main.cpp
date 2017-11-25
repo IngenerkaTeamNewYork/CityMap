@@ -6,6 +6,12 @@
 
 int main()
 {
+    //const char* take = txInputBox ("Откуда брать?", "System", "");
+   // const char* save = txInputBox ("Куда сохранять?", "System", "");
+
+
+    //const char* take = txInputBox ("Откуда брать?", "System", "");
+
     txCreateWindow (X_ICRANA, Y_ICRANA);
     HDC  fon = txLoadImage ("Pictures\\fon.bmp");
     HDC  arrows = txLoadImage ("Pictures\\arrows.bmp");
@@ -129,6 +135,7 @@ int main()
            txDeleteDC (buttons[nomer_zagolovka].knopki[nomer_knopki].ikonka);
         }
     }
+
 
     txDeleteDC (&fon);
     txDeleteDC (&arrows);
