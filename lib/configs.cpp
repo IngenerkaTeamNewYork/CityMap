@@ -17,6 +17,10 @@ const int X_ICRANA = 1100;
 const int Y_ICRANA = 650;
 const int SHIR_KNOPKI = (X_ICRANA - 100) / 4;
 
+//Map size
+const int MAP_SIZE_X = 4000;
+const int MAP_SIZE_Y = 4000;
+
 //Arrays
 const int KOLICHESTVO_KNOPOK_MENU = 4;
 const int KOLICHESTVO_KARTINOK_NA_KARTE = 1000;

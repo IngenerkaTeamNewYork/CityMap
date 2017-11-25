@@ -34,6 +34,24 @@ void Arrows (HDC arrows)
     txBitBlt (txDC(), X_ICRANA - 50, 0, 50, VISOTA_MENU + 1, arrows, 850, 0);
 }
 
+void draw_fon()
+{
+    txSetColor(TX_WHITE);
+    txSetFillColor(TX_WHITE);
+    txRectangle(0, 0, MAP_SIZE_X, MAP_SIZE_Y);
+    txSetColor (TX_BLACK);
+
+    for (int y = 0; y <= MAP_SIZE_Y; y = y + 30)
+    {
+        txLine   (0, y, MAP_SIZE_X, y);
+    }
+
+    for (int x = 0; x <= MAP_SIZE_X; x = x + 30)
+    {
+        txLine   (x, 0, x, MAP_SIZE_Y);
+    }
+}
+
 void shift ()
 {
     COLORREF color = txGetPixel(txMouseX(), txMouseY());

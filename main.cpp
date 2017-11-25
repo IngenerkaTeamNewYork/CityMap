@@ -6,12 +6,6 @@
 
 int main()
 {
-    //const char* take = txInputBox ("Откуда брать?", "System", "");
-   // const char* save = txInputBox ("Куда сохранять?", "System", "");
-
-
-    //const char* take = txInputBox ("Откуда брать?", "System", "");
-
     txCreateWindow (X_ICRANA, Y_ICRANA);
     HDC  fon = txLoadImage ("Pictures\\fon.bmp");
     HDC  arrows = txLoadImage ("Pictures\\arrows.bmp");
@@ -39,7 +33,8 @@ int main()
         txBegin();
         txSetFillColor(TX_BLACK);
         txClear();
-        txBitBlt (txDC(), 0, VISOTA_MENU, txGetExtentX(), txGetExtentY(), fon, X_COORD, 0);
+        draw_fon();
+        //txBitBlt (txDC(), 0, VISOTA_MENU, txGetExtentX(), txGetExtentY(), fon, X_COORD, 0);
         Arrows (arrows);
 
         shift ();
@@ -118,7 +113,6 @@ int main()
             txSleep(100);
         }
 
-
         txSleep(10);
         txEnd();
     }
@@ -136,11 +130,9 @@ int main()
         }
     }
 
-
     txDeleteDC (&fon);
     txDeleteDC (&arrows);
     saveMassive(KART, nomer_kartinki);
-
 
     return 0;
 }
