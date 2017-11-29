@@ -38,7 +38,6 @@ int main()
         Arrows (arrows);
 
         shift ();
-
         if (txMouseButtons() &2)
         {
             for (int nomer = 0; nomer < nomer_kartinki; nomer++)
@@ -130,9 +129,20 @@ int main()
         }
     }
 
+    for (int nomer = 0; nomer < nomer_kartinki; nomer++)
+    {
+        if (RISOVAT_KARTINKU)
+         {
+         txDeleteDC (KART[nomer].KARTINKA);
+         KART[nomer].RISOVAT_KARTINKU = false;
+         KART[nomer].KARTINKA = NULL;
+         }
+        }
     txDeleteDC (&fon);
     txDeleteDC (&arrows);
     saveMassive(KART, nomer_kartinki);
+    txDeleteDC (&RISOVAT_KARTINKU);
+//«десь должен быть ƒелитƒи—и дл€ всех картинок массива  ј–“
 
     return 0;
 }
