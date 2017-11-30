@@ -41,7 +41,7 @@ void draw_fon()
     txRectangle(0, 0, MAP_SIZE_X, MAP_SIZE_Y);
     txSetColor (TX_BLACK);
 
-    for (int y = 0; y <= MAP_SIZE_Y; y = y + 30)
+    for (int y = 20; y <= MAP_SIZE_Y; y = y + 30)
     {
         txLine   (0, y, MAP_SIZE_X, y);
     }
