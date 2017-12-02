@@ -12,13 +12,14 @@ using namespace std;
 int massive(CartincaNaKarte* KART1)
 {
     ifstream fout;
-    fout.open("Files\\Openfile.txt");
+    /*fout.open("Files\\Openfile.txt");
     string imya_faila;
     getline (fout, imya_faila);
-    fout.close();
+    fout.close();*/
 
-    fout.open("Files\\ipoteka.txt");
-
+    const char* imya_faila = txInputBox ("Откуда брать?", "System", "");
+    fout.open(imya_faila);
+    
     int nomer = 0;
     string get = "1";
     while (fout.good() && strlen(get.c_str()) > 0) {
@@ -37,7 +38,22 @@ int massive(CartincaNaKarte* KART1)
             int pos3 = get.find(',');
             string y = get.substr(0, pos3);
 
-            KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
+			bool lenin_zhiv = false;
+            for (int i = 0; i < nomer; i++)
+            {
+                if (KART1[i].adress == adress)
+                {
+                    KART1[nomer] = {KART1[i].KARTINKA, atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
+                    lenin_zhiv = true;
+					break;
+                }
+            }
+
+            if (!lenin_zhiv)
+            {
+                KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
+            }
+
             nomer++;
         }
     }
@@ -49,18 +65,16 @@ int massive(CartincaNaKarte* KART1)
 
 void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
 {
-    ifstream fout;
+    /*ifstream fout;
     fout.open("Files\\savefile.txt");
     string imya_faila_save;
     getline (fout, imya_faila_save);
-    fout.close();
-
+    fout.close();*/
+    const char* imya_faila_save = txInputBox ("Куда сохранять?", "System", "");
 
     ofstream fout_save;
-    fout_save.open("Files\\gsruiwt.txt");
+    fout_save.open(imya_faila_save);
 
-    //CartincaNaKarte KART[1];
-    //KART[0] = {txLoadImage("Icons\\Monuments\\Lenin.bmp"), 200, 200, true, "Icons\\Monuments\\Lenin.bmp"};
     for(int i = 0; i< nomer_kartinki; i++)
     {
         if (KART1[i].RISOVAT_KARTINKU)
@@ -69,5 +83,5 @@ void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
         }
     }
 
-    fout.close();
+    fout_save.close();
 }
