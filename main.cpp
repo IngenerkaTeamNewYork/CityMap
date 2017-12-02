@@ -7,8 +7,8 @@
 int main()
 {
     txCreateWindow (X_ICRANA, Y_ICRANA);
-    HDC  fon = txLoadImage ("Pictures\\fon.bmp");
-    HDC  arrows = txLoadImage ("Pictures\\arrows.bmp");
+    HDC fon = txLoadImage ("Pictures\\fon.bmp");
+    HDC arrows = txLoadImage ("Pictures\\arrows.bmp");
 
     for (int i = 0; i < KOLICHESTVO_KARTINOK_NA_KARTE; i++)
     {
@@ -133,6 +133,11 @@ int main()
     txDeleteDC (&fon);
     txDeleteDC (&arrows);
     saveMassive(KART, nomer_kartinki);
+
+    for (int nomer = 0; nomer < nomer_kartinki; nomer++)
+    {
+        txDeleteDC (KART[nomer].KARTINKA);
+    }
 
     return 0;
 }
