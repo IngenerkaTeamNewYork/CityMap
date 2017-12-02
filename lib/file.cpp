@@ -17,8 +17,7 @@ int massive(CartincaNaKarte* KART1)
     getline (fout, imya_faila);
     fout.close();
 
-    //const char* imya_faila = txInputBox ("Откуда брать?", "System", "");
-    fout.open(imya_faila);
+    fout.open("Files\\ipoteka.txt");
 
     int nomer = 0;
     string get = "1";
@@ -38,22 +37,7 @@ int massive(CartincaNaKarte* KART1)
             int pos3 = get.find(',');
             string y = get.substr(0, pos3);
 
-			bool lenin_zhiv = false;
-            for (int i = 0; i < nomer; i++)
-            {
-                if (KART1[i].adress == adress)
-                {
-                    KART1[nomer] = {KART1[i].KARTINKA, atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
-                    lenin_zhiv = true;
-					break;
-                }
-            }
-
-            if (!lenin_zhiv)
-            {
-                KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
-            }
-
+            KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
             nomer++;
         }
     }
@@ -70,11 +54,13 @@ void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
     string imya_faila_save;
     getline (fout, imya_faila_save);
     fout.close();
-    //const char* imya_faila_save = txInputBox ("Куда сохранять?", "System", "");
+
 
     ofstream fout_save;
-    fout_save.open(imya_faila_save);
+    fout_save.open("Files\\gsruiwt.txt");
 
+    //CartincaNaKarte KART[1];
+    //KART[0] = {txLoadImage("Icons\\Monuments\\Lenin.bmp"), 200, 200, true, "Icons\\Monuments\\Lenin.bmp"};
     for(int i = 0; i< nomer_kartinki; i++)
     {
         if (KART1[i].RISOVAT_KARTINKU)
