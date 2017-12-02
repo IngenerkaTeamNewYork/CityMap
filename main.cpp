@@ -3,6 +3,7 @@
 #include "lib\\debug.cpp"
 #include "lib\\file.cpp"
 #include "lib\\rounding.cpp"
+#include "eitpo.cpp"
 
 int main()
 {
@@ -15,16 +16,8 @@ int main()
         KART[i] = {NULL, 0, 0, false};
     }
     Button buttons[KOLICHESTVO_KNOPOK_MENU];
+    read(buttons);
 
-    buttons[0] = {"House",         50,                   50 + SHIR_KNOPKI,     false, {}};
-    buttons[1] = {"Public houses", 50 + SHIR_KNOPKI,     50 + 2 * SHIR_KNOPKI, false, {}};
-    buttons[2] = {"Sightseens",    50 + 2 * SHIR_KNOPKI, 50 + 3 * SHIR_KNOPKI, false, {}};
-    buttons[3] = {"Landscape",     50 + 3 * SHIR_KNOPKI, 50 + 4 * SHIR_KNOPKI, false, {}};
-
-    zapolnenie_mosiva1(&buttons[0]);
-    zapolnenie_mosiva2(&buttons[1]);
-    zapolnenie_mosiva3(&buttons[2]);
-    zapolnenie_mosiva4(&buttons[3]);
 
     int nomer_kartinki = zapolnenie_kartinok(KART);
 
@@ -34,7 +27,6 @@ int main()
         txSetFillColor(TX_BLACK);
         txClear();
         draw_fon();
-        //txBitBlt (txDC(), 0, VISOTA_MENU, txGetExtentX(), txGetExtentY(), fon, X_COORD, 0);
         Arrows (arrows);
 
         shift ();

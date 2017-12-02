@@ -12,14 +12,14 @@ using namespace std;
 int massive(CartincaNaKarte* KART1)
 {
     ifstream fout;
-    fout.open("Files\\Openfile.txt");
+    /*fout.open("Files\\Openfile.txt");
     string imya_faila;
     getline (fout, imya_faila);
-    fout.close();
+    fout.close();*/
 
-    //const char* imya_faila = txInputBox ("Откуда брать?", "System", "");
+    const char* imya_faila = txInputBox ("Откуда брать?", "System", "");
     fout.open(imya_faila);
-
+    
     int nomer = 0;
     string get = "1";
     while (fout.good() && strlen(get.c_str()) > 0) {
@@ -65,12 +65,12 @@ int massive(CartincaNaKarte* KART1)
 
 void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
 {
-    ifstream fout;
+    /*ifstream fout;
     fout.open("Files\\savefile.txt");
     string imya_faila_save;
     getline (fout, imya_faila_save);
-    fout.close();
-    //const char* imya_faila_save = txInputBox ("Куда сохранять?", "System", "");
+    fout.close();*/
+    const char* imya_faila_save = txInputBox ("Куда сохранять?", "System", "");
 
     ofstream fout_save;
     fout_save.open(imya_faila_save);
@@ -83,5 +83,5 @@ void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
         }
     }
 
-    fout.close();
+    fout_save.close();
 }
