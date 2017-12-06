@@ -17,9 +17,9 @@ int massive(CartincaNaKarte* KART1)
     getline (fout, imya_faila);
     fout.close();*/
 
-    const char* imya_faila = txInputBox ("Откуда брать?", "System", "");
+    const char* imya_faila = txInputBox ("Where to get?", "System", "");
     fout.open(imya_faila);
-    
+
     int nomer = 0;
     string get = "1";
     while (fout.good() && strlen(get.c_str()) > 0) {
@@ -70,7 +70,7 @@ void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
     string imya_faila_save;
     getline (fout, imya_faila_save);
     fout.close();*/
-    const char* imya_faila_save = txInputBox ("Куда сохранять?", "System", "");
+    const char* imya_faila_save = txInputBox ("Where to save?", "System", "");
 
     ofstream fout_save;
     fout_save.open(imya_faila_save);
