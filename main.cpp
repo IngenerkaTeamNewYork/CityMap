@@ -65,7 +65,8 @@ int main()
 
             for (int p = 0; p < nomer_kartinki; p++)
             {
-                if ((KART[nomer_kartinki].X == KART[p].X && KART[nomer_kartinki].Y == KART[p].Y))
+                if (KART[nomer_kartinki].X == KART[p].X && KART[nomer_kartinki].Y == KART[p].Y
+                    && KART[p].RISOVAT_KARTINKU)
                 {
                     many = true;
                 }
