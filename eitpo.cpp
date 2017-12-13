@@ -5,6 +5,7 @@
 #include <string>
 #include <cstring>
 #include "lib\\configs.cpp"
+#include "lib\\menu.cpp"
 
 
 using namespace std;
@@ -76,6 +77,21 @@ int read (Button* buttons)
     if (nomer_knopki > 0)
     {
         buttons[nomer_knopki].kolvo_knopok = nomer_knopki2;
+    }
+
+    KOLICHESTVO_KNOPOK_MENU = nomer_knopki + 1;
+    SHIR_KNOPKI = (X_ICRANA - 100) / KOLICHESTVO_KNOPOK_MENU;
+
+    for (int i = 0; i < KOLICHESTVO_KNOPOK_MENU; i++)
+    {
+        buttons[i].minX = 50 + SHIR_KNOPKI * i;
+        buttons[i].maxX = 50 + SHIR_KNOPKI * (i + 1);
+
+
+        for (int nom_but = 0; nom_but < buttons[i].kolvo_knopok; nom_but++)
+        {
+            buttons[i].knopki[nom_but].minX = buttons[i].minX = 50 + SHIR_KNOPKI * i;
+        }
     }
 
     fout.close();
