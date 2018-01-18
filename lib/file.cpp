@@ -39,22 +39,28 @@ int massive(CartincaNaKarte* KART1)
             string y = get.substr(0, pos3);
 
 			bool lenin_zhiv = false;
-            for (int i = 0; i < nomer; i++)
-            {
-                if (KART1[i].adress == adress)
+
+			ifstream file;
+            file.open (adress.c_str());
+            file.close();
+
+            if (file) {
+                for (int i = 0; i < nomer; i++)
                 {
-                    KART1[nomer] = {KART1[i].KARTINKA, atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
-                    lenin_zhiv = true;
-					break;
+                    if (KART1[i].adress == adress)
+                    {
+                        KART1[nomer] = {KART1[i].KARTINKA, atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
+                        lenin_zhiv = true;
+                        break;
+                    }
                 }
-            }
 
-            if (!lenin_zhiv)
-            {
-                KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
+                if (!lenin_zhiv)
+                {
+                    KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
+                }
+                nomer++;
             }
-
-            nomer++;
         }
     }
 
