@@ -59,15 +59,15 @@ void shift ()
     //Ñòðåëêà âïðàâî
     if((txMouseButtons() & 1) && (color == RGB(0, 0, 1)) && X_COORD < 3500)
     {
-        X_COORD += X_ICRANA;
-        txSleep(1000);
+        X_COORD += roundX(X_ICRANA);
+        txSleep(100);
     }
 
     //Ñòðåëêà âëåâî
     if((txMouseButtons() & 1) && (color == RGB(1, 0, 0)) && X_COORD > 0)
     {
-        X_COORD -= X_ICRANA;
-        txSleep(1000);
+        X_COORD -= roundX(X_ICRANA);
+        txSleep(100);
     }
 }
 
