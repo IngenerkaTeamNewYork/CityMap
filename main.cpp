@@ -43,7 +43,7 @@ int main()
                   KART[nomer].RISOVAT_KARTINKU = false;
                   KART[nomer].KARTINKA = NULL;
                   //nomer_kartinki = nomer - 1;
-                  txSleep (5);
+                  txSleep (1);
                 }
             }
         }
