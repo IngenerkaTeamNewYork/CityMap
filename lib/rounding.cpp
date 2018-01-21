@@ -6,12 +6,12 @@
 
 int roundY (int y)
 {
-    return round((ROUNDING/2+y)/ROUNDING)*ROUNDING - 10;
+    return round ( y / ROUNDING ) * ROUNDING - 10;
 }
 
 int roundX (int x)
 {
-    return round((ROUNDING/2+x)/ROUNDING)*ROUNDING;
+    return round ( x / ROUNDING ) * ROUNDING;
 }
 
 void round (CartincaNaKarte* KART, int x, int y)
