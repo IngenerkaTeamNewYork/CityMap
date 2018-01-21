@@ -6,65 +6,74 @@
 #include <fstream>
 #include <string>
 #include "cartinca.cpp"
+#include "configs.cpp"
 
 using namespace std;
 
 int massive(CartincaNaKarte* KART1)
 {
-    ifstream fout;
-    /*fout.open("Files\\Openfile.txt");
-    string imya_faila;
-    getline (fout, imya_faila);
-    fout.close();*/
+    int nomer = 0;
 
-    const char* imya_faila = txInputBox ("Where to get?", "System", "");
+    ifstream fout;
+    const char* imya_faila = txInputBox ("Откуда брать?", "System", "");
+    ADRESS = imya_faila;
     fout.open(imya_faila);
 
-    int nomer = 0;
-    string get = "1";
-    while (fout.good() && strlen(get.c_str()) > 0) {
-        getline (fout, get);
+    cout << imya_faila;
+    txSleep(1000);
 
-        if (strlen(get.c_str()) > 0)
-        {
-            int pos1 = get.find(',');
-            string adress = get.substr(0, pos1 );
-            get = get.substr(pos1 + 1);
+    if (!fout)
+    {
+        fout.close();
+        char* imya_faila2 = new char[195];
+        strcpy(imya_faila2, "Files\\");
+        strcat(imya_faila2, imya_faila);
+        fout.open(imya_faila2);
 
-            int pos2 = get.find(',');
-            string x = get.substr(0, pos2);
-            get = get.substr(pos2 + 1);
+        cout << imya_faila2;
+        ADRESS = imya_faila2;
+        txSleep(1000);
+    }
+    if (!fout)
+    {
+        fout.close();
+        char* imya_faila3 = new char[195];
+        strcpy(imya_faila3, "Files\\");
+        strcat(imya_faila3, imya_faila);
+        strcat(imya_faila3, ".txt");
+        fout.open(imya_faila3);
 
-            int pos3 = get.find(',');
-            string y = get.substr(0, pos3);
+        cout << imya_faila3;
+        ADRESS = imya_faila3;
+        txSleep(1000);
+    }
 
-			bool lenin_zhiv = false;
+    if (fout)
+    {
+        string get = "1";
+        while (fout.good() && strlen(get.c_str()) > 0) {
+            getline (fout, get);
 
-			ifstream file;
-            file.open (adress.c_str());
-            file.close();
+            if (strlen(get.c_str()) > 0)
+            {
+                int pos1 = get.find(',');
+                string adress = get.substr(0, pos1 );
+                get = get.substr(pos1 + 1);
 
-            if (file) {
-                for (int i = 0; i < nomer; i++)
-                {
-                    if (KART1[i].adress == adress)
-                    {
-                        KART1[nomer] = {KART1[i].KARTINKA, atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
-                        lenin_zhiv = true;
-                        break;
-                    }
-                }
+                int pos2 = get.find(',');
+                string x = get.substr(0, pos2);
+                get = get.substr(pos2 + 1);
 
-                if (!lenin_zhiv)
-                {
-                    KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
-                }
+                int pos3 = get.find(',');
+                string y = get.substr(0, pos3);
+
+                KART1[nomer] = {txLoadImage(adress.c_str()), atoi(x.c_str()), atoi(y.c_str()), true, adress.c_str()};
                 nomer++;
             }
         }
-    }
 
-    fout.close();
+        fout.close();
+    }
 
     return nomer;
 }
@@ -76,7 +85,7 @@ void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
     string imya_faila_save;
     getline (fout, imya_faila_save);
     fout.close();*/
-    const char* imya_faila_save = txInputBox ("Where to save?", "System", "");
+    const char* imya_faila_save = txInputBox ("Where to save?", "System", ADRESS);
 
     ofstream fout_save;
     fout_save.open(imya_faila_save);
