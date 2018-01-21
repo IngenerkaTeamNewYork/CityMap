@@ -8,8 +8,8 @@
 
 
 using namespace std;
-int KORD_KNOPKI = 100;
-int KORD_KNOPKI_Y = 100;
+int KORD_KNOPKI = VISOTA_MENU;
+int KORD_KNOPKI_Y = VISOTA_MENU;
 
 
 int read (Button* buttons)
@@ -79,7 +79,7 @@ int read (Button* buttons)
             buttons[nomer_knopki] = {textbutton,  KORD_KNOPKI, KORD_KNOPKI + SHIR_KNOPKI, false, {}};
             nomer_knopki2 = 0;
             KORD_KNOPKI = KORD_KNOPKI + SHIR_KNOPKI;
-            KORD_KNOPKI_Y = 50;
+            KORD_KNOPKI_Y = VISOTA_MENU;
         }
     }
 

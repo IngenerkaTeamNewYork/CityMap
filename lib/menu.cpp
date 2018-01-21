@@ -105,63 +105,6 @@ int kolvo_eltov (Button* button)
     return kolich;
 }
 
-void zapolnenie_mosiva1(Button* button)
-{
-    int y = VISOTA_MENU / 2;
-    int nomer_elementa = 0;
-    zapolnenie_mosiva(button);
-
-    button->knopki[nomer_elementa++] =  {"PrivateHouse",     button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Houses\\PrivateHouse.bmp"),     txLoadImage("Icons\\Houses\\PrivateHouse.bmp"), "Icons\\Houses\\PrivateHouse.bmp"};
-    button->knopki[nomer_elementa++] =  {"Five-building",     button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Houses\\Five-building.bmp"),    txLoadImage("Icons\\Houses\\Five-building.bmp"), "Icons\\Houses\\Five-building.bmp"};
-    button->knopki[nomer_elementa++] =  {"SkyScraper",     button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Houses\\SkyScraper.bmp"),       txLoadImage("Icons\\Houses\\SkyScraper.bmp"), "Icons\\Houses\\SkyScraper.bmp"};
-
-    button->kolvo_knopok = kolvo_eltov (button);
-}
-
-void zapolnenie_mosiva2(Button* button)
-{
-    int y = VISOTA_MENU / 2;
-    zapolnenie_mosiva(button);
-
-    button->knopki[0] =  {"hotel",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\PublicHouses\\hotel.bmp"), txLoadImage("Icons\\PublicHouses\\hotel.bmp"), "Icons\\PublicHouses\\hotel.bmp"};
-    button->knopki[1] =  {"pochta",         button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\PublicHouses\\pochta.bmp"), txLoadImage("Icons\\PublicHouses\\pochta.bmp"), "Icons\\PublicHouses\\pochta.bmp"};
-    button->knopki[2] =  {"Pyatyorochka",   button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\PublicHouses\\Pyatyorochka.bmp"), txLoadImage("Icons\\PublicHouses\\Pyatyorochka.bmp"), "Icons\\PublicHouses\\Pyatyorochka.bmp"};
-    button->knopki[3] =  {"klinika",        button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\PublicHouses\\klinika.bmp"), txLoadImage("Icons\\PublicHouses\\klinika.bmp"), "Icons\\PublicHouses\\klinika.bmp"};
-    button->knopki[4] =  {"museum",         button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\PublicHouses\\museum.bmp"), txLoadImage("Icons\\PublicHouses\\museum.bmp"), "Icons\\PublicHouses\\museum.bmp"};
-    button->knopki[5] =  {"tyurima",        button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\PublicHouses\\tyurima.bmp"), txLoadImage("Icons\\PublicHouses\\tyurima.bmp"), "Icons\\PublicHouses\\tyurima.bmp"};
-
-    button->kolvo_knopok = kolvo_eltov (button);
-}
-
-void zapolnenie_mosiva3 (Button* button)
-{
-    int y = VISOTA_MENU / 2;
-    zapolnenie_mosiva(button);
-
-    button->knopki[0] =  {"Lenin",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Monuments\\Lenin.bmp"), txLoadImage("Icons\\Monuments\\Lenin.bmp"), "Icons\\Monuments\\Lenin.bmp"};
-    button->knopki[1] =  {"EiffelTower",    button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Monuments\\EiffelTower.bmp"), txLoadImage("Icons\\Monuments\\EiffelTower.bmp"), "Icons\\Monuments\\EiffelTower.bmp"};
-    button->knopki[2] =  {"StatuyaSvobodi", button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Monuments\\StatuyaSvobodi.bmp"), txLoadImage("Icons\\Monuments\\StatuyaSvobodi.bmp"), "Icons\\Monuments\\StatuyaSvobodi.bmp"};
-
-    button->kolvo_knopok = kolvo_eltov (button);
-}
-
-void zapolnenie_mosiva4 (Button* button)
-{
-    int y = VISOTA_MENU / 2;
-    zapolnenie_mosiva(button);
-
-    button->knopki[0] =  {"Reka",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Roads\\Reka.bmp"), txLoadImage("Icons\\Roads\\Reka.bmp"), "Icons\\Roads\\Reka.bmp"};
-    button->knopki[1] =  {"Pole",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Roads\\Pole.bmp"), txLoadImage("Icons\\Roads\\Pole.bmp"), "Icons\\Roads\\Pole.bmp"};
-    button->knopki[2] =  {"SosnoviyLes",   button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Roads\\SosnoviyLes.bmp"), txLoadImage("Icons\\Roads\\SosnoviyLes.bmp"), "Icons\\Roads\\SosnoviyLes.bmp"};
-    button->knopki[3] =  {"Gora",          button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Roads\\Gora.bmp"), txLoadImage("Icons\\Roads\\Gora.bmp"), "Icons\\Roads\\Gora.bmp"};
-    button->knopki[4] =  {"Kamni",         button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Roads\\Kamni.bmp"), txLoadImage("Icons\\Roads\\Kamni.bmp"), "Icons\\Roads\\Kamni.bmp"};
-    button->knopki[5] =  {"Railway",       button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Roads\\Railway.bmp"), txLoadImage("Icons\\Roads\\Railway.bmp"), "Icons\\Roads\\Railway.bmp"};
-    button->knopki[6] =  {"Doroga",        button->minX, y = y+RASSTOYANIE_MEZHDU_KNOPKAMI, false, txLoadImage("Pictures\\Roads\\Doroga.bmp"), txLoadImage("Icons\\Roads\\Doroga.bmp"), "Icons\\Roads\\Doroga.bmp"};
-
-    button->kolvo_knopok = kolvo_eltov (button);
-}
-
-
 void menu_draw(Button* button)
 {
     txSetColor (TX_BLACK);
@@ -210,7 +153,6 @@ void menu_focus(Button* button)
         }
     }
 }
-
 
 void appearance (Button* button, int nomer_kartinki)
 {
