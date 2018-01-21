@@ -30,8 +30,8 @@ struct Button
 
 void Arrows (HDC arrows)
 {
-    txBitBlt (txDC(), 0, 0, 50, VISOTA_MENU - 1, arrows, 0, 0);
-    txBitBlt (txDC(), X_ICRANA - 50, 0, 50, VISOTA_MENU + 1, arrows, 850, 0);
+    txBitBlt (txDC(), 0, 0, 100, VISOTA_MENU - 1, arrows, 0, 0);
+    txBitBlt (txDC(), X_ICRANA + 0, 0, 0, VISOTA_MENU - 1, arrows, 129, 0);
 }
 
 void draw_fon()
@@ -60,14 +60,26 @@ void shift ()
     if((txMouseButtons() & 1) && (color == RGB(0, 0, 1)) && X_COORD < 3500)
     {
         X_COORD += roundX(X_ICRANA);
-        txSleep(100);
+        txSleep(50);
     }
 
     //Ñòðåëêà âëåâî
     if((txMouseButtons() & 1) && (color == RGB(1, 0, 0)) && X_COORD > 0)
     {
         X_COORD -= roundX(X_ICRANA);
-        txSleep(100);
+        txSleep(50);
+    }
+
+    if((txMouseButtons() & 1) && (color == RGB(0, 1, 0)) && Y_COORD < 3500)
+    {
+        Y_COORD += roundX(Y_ICRANA);
+        txSleep(50);
+    }
+
+    if((txMouseButtons() & 1) && (color == RGB(0, 2, 0)) && Y_COORD > 3500)
+    {
+        Y_COORD -= roundX(Y_ICRANA);
+        txSleep(50);
     }
 }
 

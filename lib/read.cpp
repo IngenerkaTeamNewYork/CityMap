@@ -8,9 +8,8 @@
 
 
 using namespace std;
-int KORD_KNOPKI = 50;
-int KORD_KNOPKI_Y = 50;
-
+int KORD_KNOPKI = 100;
+int KORD_KNOPKI_Y = 100;
 
 
 int read (Button* buttons)

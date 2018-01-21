@@ -27,3 +27,5 @@ const int KOLICHESTVO_KARTINOK_NA_KARTE = 1000;
 
 const int ROUNDING = 30;
 
+const char* ADRESS = "";
+
