@@ -57,26 +57,26 @@ void shift ()
     COLORREF color = txGetPixel(txMouseX(), txMouseY());
 
     //Ñòðåëêà âïðàâî
-    if((txMouseButtons() & 1) && (color == RGB(0, 0, 1))/* && X_COORD < X_ICRANA*/)
+    if((txMouseButtons() & 1) && (color == RGB(0, 0, 1)) && X_COORD < X_ICRANA)
     {
         X_COORD += roundX(X_ICRANA);
         txSleep(50);
     }
 
     //Ñòðåëêà âëåâî
-    if((txMouseButtons() & 1) && (color == RGB(1, 0, 0))/* && X_COORD > 0*/)
+    if((txMouseButtons() & 1) && (color == RGB(1, 0, 0)) && X_COORD > 0)
     {
         X_COORD -= roundX(X_ICRANA);
         txSleep(50);
     }
 
-    if((txMouseButtons() & 1) && (color == RGB(0, 1, 0))/* && Y_COORD < Y_ICRANA*/)
+    if((txMouseButtons() & 1) && (color == RGB(0, 1, 0)) && Y_COORD < Y_ICRANA)
     {
         Y_COORD += roundX(Y_ICRANA);
         txSleep(50);
     }
 
-    if((txMouseButtons() & 1) && (color == RGB(0, 2, 0)) && Y_COORD > 0)
+    if((txMouseButtons() & 1) && (color == RGB(0, 2, 0)) && Y_COORD > X_ICRANA)
     {
         Y_COORD -= roundX(Y_ICRANA);
         txSleep(50);

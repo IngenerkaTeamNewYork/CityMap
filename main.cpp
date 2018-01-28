@@ -84,7 +84,7 @@ int main()
         {
             if (KART[i].KARTINKA != NULL && KART[i].RISOVAT_KARTINKU)
             {
-                txBitBlt (txDC(), KART[i].X - X_COORD, KART[i].Y, 30, 30, KART[i].KARTINKA, 0, 0);
+                txBitBlt (txDC(), KART[i].X - X_COORD, KART[i].Y - Y_COORD, 30, 30, KART[i].KARTINKA, 0, 0);
                 nomer_kartinki = i + 1;
                 pausa = true;
             }

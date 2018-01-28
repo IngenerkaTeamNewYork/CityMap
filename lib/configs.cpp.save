@@ -16,7 +16,7 @@ int X_COORD = 0;
 int Y_COORD = 0;
 const int X_ICRANA = 1100;
 const int Y_ICRANA = 650;
-int SHIR_KNOPKI = (X_ICRANA - 50) / 4;
+int SHIR_KNOPKI = (X_ICRANA - 60) / 4;
 
 //Map size
 const int MAP_SIZE_X = 4000;
