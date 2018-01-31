@@ -15,11 +15,9 @@ int massive(CartincaNaKarte* KART1)
     int nomer = 0;
 
     ifstream fout;
-    const char* imya_faila = txInputBox ("Откуда брать?", "System", "");
+    const char* imya_faila = txInputBox ("Введите название файла(Пример:Lenin)", "System", "");
     ADRESS = imya_faila;
     fout.open(imya_faila);
-
-
 
     if (!fout)
     {
@@ -28,8 +26,6 @@ int massive(CartincaNaKarte* KART1)
         strcpy(imya_faila2, "Files\\");
         strcat(imya_faila2, imya_faila);
         fout.open(imya_faila2);
-
-        //cout << imya_faila2;
         ADRESS = imya_faila2;
     }
     if (!fout)
@@ -40,10 +36,7 @@ int massive(CartincaNaKarte* KART1)
         strcat(imya_faila3, imya_faila);
         strcat(imya_faila3, ".txt");
         fout.open(imya_faila3);
-
-        //cout << imya_faila3;
         ADRESS = imya_faila3;
-
     }
 
     if (fout)
@@ -76,30 +69,14 @@ int massive(CartincaNaKarte* KART1)
     return nomer;
 }
 
-void efshliu(CartincaNaKarte* KART1, int nomer)
-{
-    for (int n = 0; n < nomer; n++)
-    {
-        if (KART1[n].RISOVAT_KARTINKU)
-        {
-            Kart2[KART1[n].X/30][KART1[n].Y/30] = KART1[n];
-        }
-    }
-}
-
 void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
 {
-    /*ifstream fout;
-    fout.open("Files\\savefile.txt");
-    string imya_faila_save;
-    getline (fout, imya_faila_save);
-    fout.close();*/
     const char* imya_faila_save = txInputBox ("Where to save?", "System", ADRESS);
 
     ofstream fout_save;
     fout_save.open(imya_faila_save);
 
-    for(int i = 0; i< nomer_kartinki; i++)
+    for (int i = 0; i< nomer_kartinki; i++)
     {
         if (KART1[i].RISOVAT_KARTINKU)
         {

@@ -3,6 +3,11 @@
 #include "TXLib.h"
 #include "configs.cpp"
 
+struct palec
+{
+    int 
+};
+
 
 struct CartincaNaKarte
 {
