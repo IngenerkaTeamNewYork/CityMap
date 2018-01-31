@@ -6,7 +6,7 @@ int massiv[100][100];
 
 void if_povorot_na_pravo(int x,int y)
 {
-    HDC  pic = txLoadImage ("Doroga_New.bmp");
+    HDC  pic = txLoadImage ("doroga(doroga).bmp");
 
     //Дороги со всех сторон
     /*
@@ -21,7 +21,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x - 1][y] == 1 and
         massiv[x][y - 1] == 1)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 64, 34);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 1, 91);
     }
     /*
     1
@@ -35,7 +35,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 1 and
         massiv[x - 1][y] == 0)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 196, 34);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 1, 31);
     }
     /*
     1
@@ -49,7 +49,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 1 and
         massiv[x - 1][y] == 0)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 105, 0);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 61, 1);
     }
     /*
     0
@@ -63,7 +63,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 1 and
         massiv[x - 1][y] == 0)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 3, 3);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 1, 1);
     }
     /*
     1
@@ -77,7 +77,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 0 and
         massiv[x - 1][y] == 1)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 167, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 31, 31);
     }
     /*
     1
@@ -91,7 +91,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 1 and
         massiv[x - 1][y] == 1)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 133, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 61, 31);
     }
     /*
     0
@@ -105,7 +105,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 1 and
         massiv[x - 1][y] == 1)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 99, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 91, 91);
     }
     /*
     0
@@ -119,7 +119,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 1 and
         massiv[x - 1][y] == 1)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 31, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 31, 91);
     }
     /*
     1
@@ -133,7 +133,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 0 and
         massiv[x - 1][y] == 0)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 0, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 61, 91);
     }
     /*
     1
@@ -147,7 +147,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 0 and
         massiv[x - 1][y] == 1)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 33, 0);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 31, 1);
     }
     /*
     0
@@ -161,7 +161,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 0 and
         massiv[x - 1][y] == 1)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 68, 0);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 91, 1);
     }
     /*
     0
@@ -175,7 +175,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 0 and
         massiv[x - 1][y] == 0)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 0, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 1, 61);
     }
     /*
     0
@@ -189,7 +189,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 1 and
         massiv[x - 1][y] == 0)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 31, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 61, 61);
     }
     /*
     1
@@ -203,7 +203,7 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 0 and
         massiv[x - 1][y] == 0)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 0, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 91, 61);
     }
 
     /*
@@ -218,9 +218,23 @@ void if_povorot_na_pravo(int x,int y)
         massiv[x + 1][y] == 0 and
         massiv[x - 1][y] == 1)
     {
-        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 31, 35);
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 31, 61);
     }
 
+
+    /*
+     0
+    010
+     0 */
+     else if (x > 0 and y >= 0 and
+        massiv[x][y] == 1 and
+        massiv[x][y - 1] == 0 and
+        massiv[x][y + 1] == 0 and
+        massiv[x + 1][y] == 0 and
+        massiv[x - 1][y] == 0)
+    {
+        txBitBlt (txDC(), 30 * x, 30 * y, 30, 30, pic, 91, 91);
+    }
 
     txDeleteDC (pic);
 }
