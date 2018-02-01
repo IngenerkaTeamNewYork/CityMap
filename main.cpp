@@ -98,7 +98,7 @@ int main()
         for (int nomer_knopki = 0; nomer_knopki < KOLICHESTVO_KNOPOK_MENU; nomer_knopki++)
         {
             menu_focus(&buttons[nomer_knopki]);
-            menu_draw(&buttons[nomer_knopki]);
+            skritie_munu(&buttons[nomer_knopki]);
         }
 
         if (pausa)

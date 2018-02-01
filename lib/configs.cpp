@@ -30,3 +30,6 @@ const int ROUNDING = 30;
 
 const char* ADRESS = "";
 
+
+bool m_nazhata = false;
+

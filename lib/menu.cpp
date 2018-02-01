@@ -131,7 +131,7 @@ void menu_focus(Button* button)
         button->isPushed = false;
     }
 
-    if (button->isPushed)
+    if (button->isPushed && m_nazhata)
     {
 
         txRectangle (button->minX, VISOTA_MENU, button->maxX, NIZHINIY_Y);
@@ -185,3 +185,17 @@ int zapolnenie_kartinok(CartincaNaKarte* KART1)
 
     return kolvo;
 }
+
+void skritie_munu(Button* button)
+{
+	if (GetAsyncKeyState('M'))
+	{
+		m_nazhata = !m_nazhata;
+		txSleep(100);
+	}
+
+	if(m_nazhata)
+	{
+		menu_draw(button);
+	}
+ }
