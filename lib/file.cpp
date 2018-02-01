@@ -69,6 +69,17 @@ int massive(CartincaNaKarte* KART1)
     return nomer;
 }
 
+void efshliu(CartincaNaKarte* KART1, int nomer)
+{
+    for (int n = 0; n < nomer; n++)
+    {
+        if (KART1[n].RISOVAT_KARTINKU)
+        {
+            Kart2[KART1[n].X/30][KART1[n].Y/30] = KART1[n];
+        }
+    }
+}
+
 void saveMassive(CartincaNaKarte* KART1, int nomer_kartinki)
 {
     const char* imya_faila_save = txInputBox ("Where to save?", "System", ADRESS);
