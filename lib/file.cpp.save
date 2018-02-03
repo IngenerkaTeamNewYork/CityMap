@@ -7,7 +7,6 @@
 #include <string>
 #include "cartinca.cpp"
 #include "configs.cpp"
-#include "if_povorotov.cpp"
 
 using namespace std;
 
@@ -72,34 +71,11 @@ int massive(CartincaNaKarte* KART1)
 
 void efshliu(CartincaNaKarte* KART1, int nomer)
 {
-    for (int stroka = 0; stroka < 100; stroka++)
-    {
-        for (int stolbec = 0; stolbec < 100; stolbec++)
-        {
-            massiv[stroka][stolbec] = 0;
-        }
-    }
-
-
     for (int n = 0; n < nomer; n++)
     {
-        if (KART1[n].RISOVAT_KARTINKU and KART1[n].X >= 0 and KART1[n].Y >= 0 and
-            KART1[n].X <= 1000 and KART1[n].Y <= 600)
+        if (KART1[n].RISOVAT_KARTINKU and KART1[n].X > 0 )
         {
             Kart2[KART1[n].X/30][KART1[n].Y/30] = KART1[n];
-            if (strcmp(KART1[n].adress.c_str(), "Icons\\Roads\\Doroga.bmp") == 0)
-            {
-                massiv[KART1[n].X/30][KART1[n].Y/30] = 1;
-            }
-        }
-    }
-
-
-    for (int stroka = 0; stroka < 100; stroka++)
-    {
-        for (int stolbec = 0; stolbec < 100; stolbec++)
-        {
-            if_povorot_na_pravo(stolbec, stroka, picDorogi);
         }
     }
 }
