@@ -1,15 +1,19 @@
 #include "TXLib.h"
+
 #include "lib\\menu.cpp"
 #include "lib\\debug.cpp"
 #include "lib\\file.cpp"
 #include "lib\\rounding.cpp"
 #include "lib\\read.cpp"
+#include "lib\\if_povorotov.cpp"
+
 
 int main()
 {
     txCreateWindow (X_ICRANA, Y_ICRANA);
     HDC fon = txLoadImage ("Pictures\\fon.bmp");
     HDC arrows = txLoadImage ("Pictures\\arrows.bmp");
+    picDorogi = txLoadImage ("doroga(doroga).bmp");
 
     for (int i = 0; i < KOLICHESTVO_KARTINOK_NA_KARTE; i++)
     {
@@ -84,11 +88,17 @@ int main()
         {
             if (KART[i].KARTINKA != NULL && KART[i].RISOVAT_KARTINKU)
             {
-                txBitBlt (txDC(), KART[i].X - X_COORD, KART[i].Y - Y_COORD, 30, 30, KART[i].KARTINKA, 0, 0);
+                if (strcmp(KART[i].adress.c_str(), "Icons\\Roads\\Doroga.bmp") != 0)
+                {
+                    txBitBlt (txDC(), KART[i].X - X_COORD, KART[i].Y - Y_COORD, 30, 30, KART[i].KARTINKA, 0, 0);
+                }
                 nomer_kartinki = i + 1;
                 pausa = true;
             }
+
         }
+
+        efshliu(KART, nomer_kartinki);
 
         appearance (&buttons[0], nomer_kartinki);
         appearance (&buttons[1], nomer_kartinki);

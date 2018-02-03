@@ -15,3 +15,5 @@ struct CartincaNaKarte
 
 CartincaNaKarte* KART = new CartincaNaKarte[KOLICHESTVO_KARTINOK_NA_KARTE];
 CartincaNaKarte Kart2[KOLICHESTVO_KARTINOK_NA_KARTE][KOLICHESTVO_KARTINOK_NA_KARTE];
+int massiv[100][100];
+HDC  picDorogi;
