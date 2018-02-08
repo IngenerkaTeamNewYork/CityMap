@@ -6,6 +6,7 @@
 #include "lib\\rounding.cpp"
 #include "lib\\read.cpp"
 #include "lib\\if_povorotov.cpp"
+#include "screen.cpp"
 
 
 int main()
@@ -135,6 +136,7 @@ int main()
 
     txDeleteDC (&fon);
     txDeleteDC (&arrows);
+    mscreen();
     saveMassive(KART, nomer_kartinki);
 
     for (int nomer = 0; nomer < nomer_kartinki; nomer++)
